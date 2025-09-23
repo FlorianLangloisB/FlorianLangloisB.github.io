@@ -1,0 +1,5 @@
+[book]
+authors = ["Florian Langlois"]
+language = "fr"
+src = "src"
+title = "Mon site internet"
