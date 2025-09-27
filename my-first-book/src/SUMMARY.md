@@ -1,6 +1,7 @@
 # Summary
 
-- [Page principale](./page_principale.md)
-    - [Sciences](./sciences.md)  
-    - [Histoire](./histoire.md)  
-    - [Pop Culture](./pop_culture.md)
+[Page principale](./page_principale.md)
+
+- [Le projet Barbuki](./barbuki.md)  
+- [Histoire](./histoire.md)  
+- [Pop Culture](./pop_culture.md)
