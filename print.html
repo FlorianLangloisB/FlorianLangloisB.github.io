@@ -273,8 +273,20 @@ vectoriels, qui me seront très utiles dans mes différents livres de mathémati
 <p>Je vais réunir ici les différentes commandes que j'ai apprises afin de me faire un récaptitulatif. On peut utiliser Asymptote directement en ligne via <a href="https://asymptote.ualberta.ca/">ce site internet</a>. Pour apprendre, je consulte <a href="https://asymptote.sourceforge.io/asymptote_tutorial.pdf">le document suivant</a>.</p>
 <h2 id="1---ecrire-du-texte"><a class="header" href="#1---ecrire-du-texte">1 - Ecrire du texte</a></h2>
 <pre><code class="language-cpp">label("Hello world");
+defaultpen(fontsize(100pt));  /*Changer la taille de police de manière globale */
+label("Hello world", p = fontsize(100pt)); /*Changer la taille de police de manière locale */
+label("Hello world", (5,3)); /*Changer la position du texte */
 </code></pre>
-<img src="https://i.imgur.com/U2VGeEG.png" alt="Hello world" style="background-color: white; padding: 4px;">
+<h2 id="2---dessin-en-2d"><a class="header" href="#2---dessin-en-2d">2 - Dessin en 2D</a></h2>
+<h3 id="21---tailles"><a class="header" href="#21---tailles">2.1 - Tailles</a></h3>
+<pre><code class="language-cpp">unitsize(1cm); /*Taille de l'unité */
+</code></pre>
+<h3 id="22---lignes"><a class="header" href="#22---lignes">2.2 - Lignes</a></h3>
+<pre><code class="language-cpp">draw((0,0) -- (1,0));
+draw((0,0) -- (1,0), arrow = Arrow); /*Rajouter une flèche au bout*/
+</code></pre>
+<p>Les différentes apprences de flèches :<br />
+<img src="https://i.imgur.com/BBIP7SX.png" alt="Les différentes apparences de flèches" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="histoire"><a class="header" href="#histoire">Histoire</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="pop-culture"><a class="header" href="#pop-culture">Pop Culture</a></h1>
 
