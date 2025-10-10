@@ -271,6 +271,16 @@ vectoriels, qui me seront très utiles dans mes différents livres de mathémati
 <div style="break-before: page; page-break-before: always;"></div><h1 id="asymptote"><a class="header" href="#asymptote">Asymptote</a></h1>
 <p><strong>Asymptote</strong> est un langage qui permet de faire du dessin vectoriel. Je l'apprends afin de réaliser les différents dessins que je vais mettre dans mes ouvrages de mathématiques. Actuellement j'utilise la bibliothèque TikZ en LaTeX mais elle connait ses limites dans le sens où elle est très complexe à utiliser : Asymptote se veut comme une alternative.</p>
 <p>Je vais réunir ici les différentes commandes que j'ai apprises afin de me faire un récaptitulatif. On peut utiliser Asymptote directement en ligne via <a href="https://asymptote.ualberta.ca/">ce site internet</a>. Pour apprendre, je consulte <a href="https://asymptote.sourceforge.io/asymptote_tutorial.pdf">le document suivant</a>.</p>
+<p><strong>Sommaire</strong></p>
+<ul>
+<li><a href="informatique/asymptote.html#1---ecrire-du-texte">1 - Ecrire du texte</a></li>
+<li><a href="informatique/asymptote.html#2---dessin-en-2d">2 - Dessin en 2D</a>
+<ul>
+<li><a href="informatique/asymptote.html#21---tailles">2.1 - Tailles</a></li>
+<li><a href="informatique/asymptote.html#22---lignes-et-courbes">2.2 - Lignes</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="1---ecrire-du-texte"><a class="header" href="#1---ecrire-du-texte">1 - Ecrire du texte</a></h2>
 <pre><code class="language-cpp">label("Hello world");
 defaultpen(fontsize(100pt));  /*Changer la taille de police de manière globale */
@@ -281,12 +291,23 @@ label("Hello world", (5,3)); /*Changer la position du texte */
 <h3 id="21---tailles"><a class="header" href="#21---tailles">2.1 - Tailles</a></h3>
 <pre><code class="language-cpp">unitsize(1cm); /*Taille de l'unité */
 </code></pre>
-<h3 id="22---lignes"><a class="header" href="#22---lignes">2.2 - Lignes</a></h3>
+<h3 id="22---lignes-et-courbes"><a class="header" href="#22---lignes-et-courbes">2.2 - Lignes et courbes</a></h3>
 <pre><code class="language-cpp">draw((0,0) -- (1,0));
 draw((0,0) -- (1,0), arrow = Arrow); /*Rajouter une flèche au bout*/
 </code></pre>
-<p>Les différentes apprences de flèches :<br />
-<img src="https://i.imgur.com/BBIP7SX.png" alt="Les différentes apparences de flèches" /></p>
+<p><img src="https://i.imgur.com/BBIP7SX.png" alt="Les différentes apparences de flèches" /></p>
+<pre><code class="language-cpp">draw((0,0) -- (1,1) -- (2,sqrt(2))); /*Ligne brisée*/
+draw((0,0) .. (1,1) .. (2,sqrt(2))); /*Ligne plus courbée*/
+
+/*Ajouter des directions de tangentes */
+draw((0,0){up} .. (1,1) ..(2,sqrt(2))); 
+draw((0,0){(1,1)} .. {right}(pi/2,1){left} .. {(1,-1)}(pi,0));
+
+/*Ajouter des marqueurs aux points */
+draw((0,0) .. (pi/2,1) .. (pi,0).. (3*pi/2,-1) .. (2*pi, 0),marker=MarkFill[0]);
+</code></pre>
+<p><img src="https://i.imgur.com/5mx4JAo.png" alt="Marqueurs des points d&#39;un chemin" /></p>
+<p><img src="https://i.imgur.com/4mEfNrv.png" alt="Les différents marqueurs" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="histoire"><a class="header" href="#histoire">Histoire</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="pop-culture"><a class="header" href="#pop-culture">Pop Culture</a></h1>
 
