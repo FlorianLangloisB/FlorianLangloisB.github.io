@@ -285,72 +285,73 @@ vectoriels, qui me seront très utiles dans mes différents livres de mathémati
 </li>
 <li><a href="informatique/asymptote.html#3---tailles">3 - Tailles </a></li>
 <li><a href="informatique/asymptote.html#4---boucle-for">4 - Boucle <code>for</code></a></li>
+<li><a href="informatique/asymptote.html#5---les-diff%C3%A9rents-types-de-variables">5 - Les différents types de variables</a></li>
 </ul>
 <h2 id="1---ecrire-du-texte"><a class="header" href="#1---ecrire-du-texte">1 - Ecrire du texte</a></h2>
 <pre><code class="language-cpp">label("Hello world");
-defaultpen(fontsize(100pt));  /*Changer la taille de police de manière globale */
-label("Hello world", p = fontsize(100pt)); /*Changer la taille de police de manière locale */
-label("Hello world", (5,3)); /*Changer la position du texte */
+defaultpen(fontsize(100pt));  // Changer la taille de police de manière globale
+label("Hello world", p = fontsize(100pt)); // Changer la taille de police de manière locale
+label("Hello world", (5,3)); // Changer la position du texte
 </code></pre>
 <h2 id="2---dessin-en-2d"><a class="header" href="#2---dessin-en-2d">2 - Dessin en 2D</a></h2>
 <h3 id="21---les-chemins"><a class="header" href="#21---les-chemins">2.1 - Les chemins</a></h3>
 <p>Un chemin désigne le parcourt du stylo qui va tracer la figure voulue. On peut le stocker dans une variable de type <code>path</code> et le donner comme argument à la fonction <code>draw</code> pour le tracer, ou directement donner le chemin à la fonction <code>draw</code>.</p>
-<pre><code class="language-cpp">path p = (0,0) -- (1,0); /*chemin reliant deux point*/
-draw(p);  /*Pour tracer un chemin */
-draw((0,0) -- (1,0)); /*Peut être indiqué directement dans la fonction draw */
+<pre><code class="language-cpp">path p = (0,0) -- (1,0); // chemin reliant deux point
+draw(p);  // Pour tracer un chemin
+draw((0,0) -- (1,0)); // Peut être indiqué directement dans la fonction draw
 </code></pre>
 <p>Quelques exemples de chemin à stocker dans une variable de type <code>path</code> ou à donner à la fonction <code>draw</code> :</p>
-<pre><code class="language-cpp">/* === Chemins basiques === */
-(0,0) -- (1,1) -- (2,sqrt(2)) -- cycle /*Revenir au point de départ*/
-(0,0) -- (1,1) -- (2,sqrt(2)) /*Ligne brisée */
-(0,0) .. (1,1) .. (2,sqrt(2)) /*Ligne courbe*/
+<pre><code class="language-cpp">//  === Chemins basiques ===
+(0,0) -- (1,1) -- (2,sqrt(2)) -- cycle // Revenir au point de départ
+(0,0) -- (1,1) -- (2,sqrt(2)) // Ligne brisée
+(0,0) .. (1,1) .. (2,sqrt(2)) // Ligne courbe
 
-/* === Tangentes en un point du chemin === */
-(0,0){up} .. (1,1) ..(2,sqrt(2)) /*up,down,left,right */
-/*On peut indiquer les coordonnées d'un vecteur tangent, avant l'arrivée au point ou après */
+//  === Tangentes en un point du chemin ===
+(0,0){up} .. (1,1) ..(2,sqrt(2)) // up,down,left,right
+// On peut indiquer les coordonnées d'un vecteur tangent, avant l'arrivée au point ou après
 (0,0){(1,1)} .. {right}(pi/2,1){left} .. {(1,-1)}(pi,0) 
 
-/* === Cercles et ellipses === */
-unitcircle /*Cercle unité*/
-circle((0,1), 0.5)  /*Cercle avec son centre et son rayon*/
-ellipse((1,0), 1.5, 0.5) /*Ellipse avec son centre, son diamètre horizontal et son diamètre vertical */
+//  === Cercles et ellipses ===
+unitcircle // Cercle unité
+circle((0,1), 0.5)  // Cercle avec son centre et son rayon
+ellipse((1,0), 1.5, 0.5) // Ellipse avec son centre, son diamètre horizontal et son diamètre vertical
 
-/* === Arc === */
-arc((2,1), 2, 60, 80) /*Centre de l'arc, rayon, degré début, degré fin */
-/*Sens trigo si angle1 &lt; angle2, horaire sinon */
+//  === Arc ===
+arc((2,1), 2, 60, 80) // Centre de l'arc, rayon, degré début, degré fin
+// Sens trigo si angle1 &lt; angle2, horaire sinon 
 arc((0,0), r=1, angle1=270, angle2=0)
 /*Possibilité d'indiquer le centre, un point de la direction commençant et un point de la direction finissante*/
 arc((0,0), (2,0), (3,4)) 
-/*Possibilité d'indiquer la direction : CW=horaire, CCW=trigo */
+// Possibilité d'indiquer la direction : CW=horaire, CCW=trigo 
 arc((0,0), (2,0), (3,4),direction=CW) 
 
-/* === Polygones === */
-box((0,0), (2,1)) /*Rectangle avec deux coins opposés */
-polygon(5) /*Polygône régulier à 5 côtés inscrit dans le cercle unité */
+//  === Polygones ===
+box((0,0), (2,1)) // Rectangle avec deux coins opposés
+polygon(5) // Polygône régulier à 5 côtés inscrit dans le cercle unité
 </code></pre>
 <h3 id="22---opérations-sur-les-chemins"><a class="header" href="#22---opérations-sur-les-chemins">2.2 - Opérations sur les chemins</a></h3>
-<pre><code class="language-cpp">/* === Deux chemins peuvent s'enchaîner === */
+<pre><code class="language-cpp">// === Deux chemins peuvent s'enchaîner ===
 path p = arc((2,1), 2, 60, 80);
 path q = (2,1) -- p -- cycle;
 
-/* === Transformations géométriques === */
-shift(1,2)*p /*Translation */
-xscale(1.6)*p /*Homothétie horizontale*/
-yscale(1.4)*p /*Hmothétie verticale*/
-scale(1.8)*P /*Homothétie*/
-rotate(60)*p /*Dans le sens trigonométrique, angle en degrés */
-shift(-2,0) * rotate(45) * yscale(0.5) * p /*Possibilité d'en enchaîner avec *  */
+//  === Transformations géométriques === 
+shift(1,2)*p // Translation 
+xscale(1.6)*p // Homothétie horizontale
+yscale(1.4)*p // Hmothétie verticale
+scale(1.8)*P // Homothétie
+rotate(60)*p // Dans le sens trigonométrique, angle en degrés 
+shift(-2,0) * rotate(45) * yscale(0.5) * p // Possibilité d'en enchaîner avec *
 </code></pre>
 <h3 id="23---la-fonction-draw"><a class="header" href="#23---la-fonction-draw">2.3 - La fonction <code>draw</code></a></h3>
 <pre><code class="language-cpp">path p = (0,0) -- (1,0);
 draw(p);
-draw(p,red); /*Couleur*/
-draw(p,linewidth(2.0pt)) /*Epaisseur du tracé*/
-draw(p,black + linewidth(2.0pt)); /*Possibilité de combiner plusieurs effets*/
-draw(p,arrow = Arrow); /*Rajouter une flèche au bout*/
+draw(p,red); // Couleur
+draw(p,linewidth(2.0pt)) // Epaisseur du tracé
+draw(p,black + linewidth(2.0pt)); // Possibilité de combiner plusieurs effets
+draw(p,arrow = Arrow); // Rajouter une flèche au bout
 </code></pre>
 <p><img src="https://i.imgur.com/9eYGZoM.png" alt="Les différentes apparences de flèches" /></p>
-<pre><code class="language-cpp">draw(p,marker=MarkFill[0]); /*Rajouter un marqueur aux points du tracé*/
+<pre><code class="language-cpp">draw(p,marker=MarkFill[0]); //Rajouter un marqueur aux points du tracé
 </code></pre>
 <p><img src="https://i.imgur.com/yHe48GB.png" alt="Les différents marqueurs" /></p>
 <h3 id="24---la-fonction-fill"><a class="header" href="#24---la-fonction-fill">2.4 - La fonction <code>fill</code></a></h3>
@@ -364,7 +365,7 @@ dot((42,9), red);
 </code></pre>
 <h2 id="3---tailles"><a class="header" href="#3---tailles">3 - Tailles</a></h2>
 <p>Il s'agit de la taille du rendu dans le pdf final.</p>
-<pre><code class="language-cpp">unitsize(1cm); /*Taille de l'unité */
+<pre><code class="language-cpp">unitsize(1cm); //Taille de l'unité 
 size(3cm); /*Agrandit le plus possible de sorte que ni l'horizontal ni le vertical ne dépasse 3cm */
 size(2cm,3cm); 
 /*will ordinarily produce a picture that is either 2 centimeters wide (and ≤ 3 centimeters tall) or a picture that is 3 centimeters tall (and ≤ 2 centimeters wide). In either case, the height-to-width ratio is preserved */
@@ -388,10 +389,10 @@ draw(p, arrow=Arrow(TeXHead), red, margin=ArrowMargins);
 }
 </code></pre>
 <h2 id="5---les-différents-types-de-variables"><a class="header" href="#5---les-différents-types-de-variables">5 - Les différents types de variables</a></h2>
-<pre><code class="language-cpp">path p = (0,0) -- (1,0); /*Chemins*/
-pair A = (0,0); /*Points*/
-real x = -0.1; /*Doubles*/
-arrowbar a = Arrow(TeXHead); /*Tête de flèches*/
+<pre><code class="language-cpp">path p = (0,0) -- (1,0); //Chemins
+pair A = (0,0); //Points
+real x = -0.1; //Doubles
+arrowbar a = Arrow(TeXHead); //Tête de flèches
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="histoire"><a class="header" href="#histoire">Histoire</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="pop-culture"><a class="header" href="#pop-culture">Pop Culture</a></h1>
