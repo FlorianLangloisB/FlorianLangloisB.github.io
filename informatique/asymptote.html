@@ -180,33 +180,75 @@
 <p>Je vais réunir ici les différentes commandes que j'ai apprises afin de me faire un récaptitulatif. On peut utiliser Asymptote directement en ligne via <a href="https://asymptote.ualberta.ca/">ce site internet</a>. Pour apprendre, je consulte <a href="https://asymptote.sourceforge.io/asymptote_tutorial.pdf">le document suivant</a>.</p>
 <p><strong>Sommaire</strong></p>
 <ul>
-<li><a href="#1---ecrire-du-texte">1 - Ecrire du texte</a></li>
-<li><a href="#2---dessin-en-2d">2 - Dessin en 2D</a>
+<li><a href="#0---g%C3%A9n%C3%A9ralit%C3%A9s">0 - Généralités</a>
 <ul>
-<li><a href="#21---les-chemins">2.1 - Les chemins </a></li>
-<li><a href="#22---op%C3%A9rations-sur-les-chemins">2.2 - Opérations sur les chemins</a></li>
-<li><a href="#23---la-fonction-draw">2.3 - La fonction <code>draw</code> </a></li>
-<li><a href="#24---la-fonction-fill">2.4 - La fonction <code>fill</code></a></li>
-<li><a href="#25---placer-des-points">2.5 - Placer des points</a></li>
+<li><a href="#01---types-de-variables">0.1 - Types de variables</a></li>
+<li><a href="#02---boucle-for">0.2 - Boucle <code>for</code></a></li>
 </ul>
 </li>
-<li><a href="#3---tailles">3 - Tailles </a></li>
-<li><a href="#4---boucle-for">4 - Boucle <code>for</code></a></li>
-<li><a href="#5---les-diff%C3%A9rents-types-de-variables">5 - Les différents types de variables</a></li>
+<li><a href="#1---dessins-en-2d">1 - Dessins en 2D</a>
+<ul>
+<li><a href="#11---ecrire-du-texte">1.1 - Ecrire du texte</a></li>
+<li><a href="#12---placer-des-points">1.2 - Placer des points</a></li>
+<li><a href="#13---chemins">1.3 - Chemins</a>
+<ul>
+<li><a href="#131---principe-g%C3%A9n%C3%A9ral">1.3.1 - Principe général</a></li>
+<li><a href="#132---g%C3%A9om%C3%A9trie">1.3.2 - Géométrie</a></li>
+<li><a href="#133---op%C3%A9rations-sur-les-chemins">1.3.3 - Opérations sur les chemins</a></li>
+<li><a href="#134---moments-et-intersections">1.3.4 - Moments et intersections</a></li>
+<li><a href="#135---la-fonction-draw">1.3.5 - La fonction <code>draw</code> </a></li>
+<li><a href="#136---la-fonction-fill">1.3.6 - La fonction <code>fill</code></a></li>
 </ul>
-<h2 id="1---ecrire-du-texte"><a class="header" href="#1---ecrire-du-texte">1 - Ecrire du texte</a></h2>
+</li>
+<li><a href="#14---tailles">1.4 - Tailles</a></li>
+<li><a href="#15---clip-une-zone">1.5 - Clip une zone</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="0---généralités"><a class="header" href="#0---généralités">0 - Généralités</a></h1>
+<h2 id="01---types-de-variables"><a class="header" href="#01---types-de-variables">0.1 - Types de variables</a></h2>
+<pre><code class="language-cpp">// === Types classiques ===
+real t = 1.5; //double
+string s = "bonjour"; //string
+
+// === Géométrie ===
+path p = (0,0) -- (1,0); //chemins
+pair P = (0,0); //Points
+
+// === Dessin ===
+arrowbar a = Arrow(TeXHead); //Tête de flèches
+</code></pre>
+<p>Réaliser un cast (conversion si possible d'un type vers un autre) :</p>
+<pre><code class="language-cpp">real t = 1.5;
+string s = (string) t; //Conversion de t de real en string
+</code></pre>
+<h2 id="02---boucle-for"><a class="header" href="#02---boucle-for">0.2 - Boucle <code>for</code></a></h2>
+<p>Un exemple d'utilisation :</p>
+<pre><code class="language-cpp">for (int n = 3; n &lt;= 7; ++n) 
+{
+    path p = shift(2.2*n, 0) * polygon(n);
+    draw(p,red);
+}
+</code></pre>
+<h1 id="1---dessins-en-2d"><a class="header" href="#1---dessins-en-2d">1 - Dessins en 2D</a></h1>
+<h2 id="11---ecrire-du-texte"><a class="header" href="#11---ecrire-du-texte">1.1 - Ecrire du texte</a></h2>
 <pre><code class="language-cpp">label("Hello world");
 defaultpen(fontsize(100pt));  // Changer la taille de police de manière globale
 label("Hello world", p = fontsize(100pt)); // Changer la taille de police de manière locale
 label("Hello world", (5,3)); // Changer la position du texte
 </code></pre>
-<h2 id="2---dessin-en-2d"><a class="header" href="#2---dessin-en-2d">2 - Dessin en 2D</a></h2>
-<h3 id="21---les-chemins"><a class="header" href="#21---les-chemins">2.1 - Les chemins</a></h3>
+<h2 id="12---placer-des-points"><a class="header" href="#12---placer-des-points">1.2 - Placer des points</a></h2>
+<pre><code class="language-cpp">dot((2,1));
+dot((42,9), red); 
+</code></pre>
+<h2 id="13---chemins"><a class="header" href="#13---chemins">1.3 - Chemins</a></h2>
+<h3 id="131---principe-général"><a class="header" href="#131---principe-général">1.3.1 - Principe général</a></h3>
 <p>Un chemin désigne le parcourt du stylo qui va tracer la figure voulue. On peut le stocker dans une variable de type <code>path</code> et le donner comme argument à la fonction <code>draw</code> pour le tracer, ou directement donner le chemin à la fonction <code>draw</code>.</p>
 <pre><code class="language-cpp">path p = (0,0) -- (1,0); // chemin reliant deux point
 draw(p);  // Pour tracer un chemin
 draw((0,0) -- (1,0)); // Peut être indiqué directement dans la fonction draw
 </code></pre>
+<h3 id="132---géométrie"><a class="header" href="#132---géométrie">1.3.2 - Géométrie</a></h3>
 <p>Quelques exemples de chemin à stocker dans une variable de type <code>path</code> ou à donner à la fonction <code>draw</code> :</p>
 <pre><code class="language-cpp">//  === Chemins basiques ===
 (0,0) -- (1,1) -- (2,sqrt(2)) -- cycle // Revenir au point de départ
@@ -236,7 +278,7 @@ arc((0,0), (2,0), (3,4),direction=CW)
 box((0,0), (2,1)) // Rectangle avec deux coins opposés
 polygon(5) // Polygône régulier à 5 côtés inscrit dans le cercle unité
 </code></pre>
-<h3 id="22---opérations-sur-les-chemins"><a class="header" href="#22---opérations-sur-les-chemins">2.2 - Opérations sur les chemins</a></h3>
+<h3 id="133---opérations-sur-les-chemins"><a class="header" href="#133---opérations-sur-les-chemins">1.3.3 - Opérations sur les chemins</a></h3>
 <pre><code class="language-cpp">// === Deux chemins peuvent s'enchaîner ===
 path p = arc((2,1), 2, 60, 80);
 path q = (2,1) -- p -- cycle;
@@ -249,7 +291,40 @@ scale(1.8)*P // Homothétie
 rotate(60)*p // Dans le sens trigonométrique, angle en degrés 
 shift(-2,0) * rotate(45) * yscale(0.5) * p // Possibilité d'en enchaîner avec *
 </code></pre>
-<h3 id="23---la-fonction-draw"><a class="header" href="#23---la-fonction-draw">2.3 - La fonction <code>draw</code></a></h3>
+<h3 id="134---moments-et-intersections"><a class="header" href="#134---moments-et-intersections">1.3.4 - Moments et intersections</a></h3>
+<p>Un moment d'un chemin <code>p</code> c'est un réel $t\in[0,1]$ représentant une proportion de la longueur de <code>p</code> qui a été parcourue. Par exemple si $t=0.5$ alors cela représente la moitié du parcourt de <code>p</code>.</p>
+<pre><code class="language-cpp">path sous_chemin = subpath(p,0.25,0.75); //Sous-chemin de 25% du parcourt jusqu'à 75% du parcourt
+</code></pre>
+<p>Pour un chemin <code>p</code>, si jamais il intersecte la droite d'équation $x=a$ un certain nombre de fois (possiblement 1 fois), on peut récupérer la liste des "<em>moments</em>" où ça s'est produit avec <code>times</code> (un moment étant un réel $t\in[0,1]$ représentant la proportion de la longueur du chemin <code>p</code> parcourut).</p>
+<pre><code class="language-cpp">// === Intersection entre un chemin et une droite x=a ===
+path p = (0,0) -- (3,0);
+real[] arr = times(p,1.5); // Array des moments où p et x=1.5 s'intersectent 
+real t = arr[0]; // Premier [0] moment : donc en t=0.5 puisqu'à la moitié du parcours de p
+
+// === Entre deux chemins ===
+path q = (1,-1) -- (1,1);
+real[] arr = intersect(p,q); // Array de deux éléments
+real t = arr[0]; 
+    /* Premier moment (le long de p) d'intersection entre p et q
+    Ici 0.333... car à 1/3 du parcours de p */
+real t = arr[1];
+    /* Premier moment (le long de q) d'intersection entre p et q
+    Ici 0.5 car à moitié du parcours de q */
+
+// Pour plus d'un moment
+real[][] arr_arr intersections(p,q); // Array à double entrées
+/*
+    arr_arr[0] l'array des moments pour p
+        arr_arr[0][2] troisième moment pour p
+    arr_arr[1] l'array des moments pour q
+        arr_arr[1][5] sixième moment pour q
+*/
+</code></pre>
+<p>On peut plus directement récupérer les points d'intersection plutôt que les moments</p>
+<pre><code class="language-cpp">pair = intersectionpoint(p,q); //le premier point d'intersection
+pair[] arr = intersectionpoints(p,q); // array de tous les points d'intersection
+</code></pre>
+<h3 id="135---la-fonction-draw"><a class="header" href="#135---la-fonction-draw">1.3.5 - La fonction <code>draw</code></a></h3>
 <pre><code class="language-cpp">path p = (0,0) -- (1,0);
 draw(p);
 draw(p,red); // Couleur
@@ -258,19 +333,20 @@ draw(p,black + linewidth(2.0pt)); // Possibilité de combiner plusieurs effets
 draw(p,arrow = Arrow); // Rajouter une flèche au bout
 </code></pre>
 <p><img src="https://i.imgur.com/9eYGZoM.png" alt="Les différentes apparences de flèches" /></p>
-<pre><code class="language-cpp">draw(p,marker=MarkFill[0]); //Rajouter un marqueur aux points du tracé
+<p>Si un chemin est composé de plusieurs morceaux, on peut indiquer à la fin de quel morceau on souhaite placer le bout de la flèche :</p>
+<pre><code class="language-cpp">path p = (0,0) -- (1,0) -- (1.5,0); //Deux morceaux
+draw(p,arrow = Arrow(position = 0.5)); //Au milieu du premier morceau
+
+// === Rajouter un marqueur aux points du tracé ===
+draw(p,marker=MarkFill[0]); 
 </code></pre>
 <p><img src="https://i.imgur.com/yHe48GB.png" alt="Les différents marqueurs" /></p>
-<h3 id="24---la-fonction-fill"><a class="header" href="#24---la-fonction-fill">2.4 - La fonction <code>fill</code></a></h3>
+<h3 id="136---la-fonction-fill"><a class="header" href="#136---la-fonction-fill">1.3.6 - La fonction <code>fill</code></a></h3>
 <pre><code class="language-cpp">path p = (0,0){up} .. (1,1) .. (2,sqrt(2)) -- (2,0) -- cycle;
 fill(p);
 fill(p,blue);
 </code></pre>
-<h3 id="25---placer-des-points"><a class="header" href="#25---placer-des-points">2.5 - Placer des points</a></h3>
-<pre><code class="language-cpp">dot((2,1));
-dot((42,9), red);
-</code></pre>
-<h2 id="3---tailles"><a class="header" href="#3---tailles">3 - Tailles</a></h2>
+<h2 id="14---tailles"><a class="header" href="#14---tailles">1.4 - Tailles</a></h2>
 <p>Il s'agit de la taille du rendu dans le pdf final.</p>
 <pre><code class="language-cpp">unitsize(1cm); //Taille de l'unité 
 size(3cm); /*Agrandit le plus possible de sorte que ni l'horizontal ni le vertical ne dépasse 3cm */
@@ -287,19 +363,10 @@ margin ArrowMargins = TrueMargin(linewidth, 0.5 linewidth);
 path p = arc((0,0), (2,0), (3,4));
 draw(p, arrow=Arrow(TeXHead), red, margin=ArrowMargins);
 </code></pre>
-<h2 id="4---boucle-for"><a class="header" href="#4---boucle-for">4 - Boucle <code>for</code></a></h2>
-<p>Un exemple d'utilisation :</p>
-<pre><code class="language-cpp">for (int n = 3; n &lt;= 7; ++n) 
-{
-    path p = shift(2.2*n, 0) * polygon(n);
-    draw(p,red);
-}
-</code></pre>
-<h2 id="5---les-différents-types-de-variables"><a class="header" href="#5---les-différents-types-de-variables">5 - Les différents types de variables</a></h2>
-<pre><code class="language-cpp">path p = (0,0) -- (1,0); //Chemins
-pair A = (0,0); //Points
-real x = -0.1; //Doubles
-arrowbar a = Arrow(TeXHead); //Tête de flèches
+<h2 id="15---clip-une-zone"><a class="header" href="#15---clip-une-zone">1.5 - Clip une zone</a></h2>
+<p>La fonction <code>clip</code> permet de ne conserver des dessins que ce qui se situe dans la zone clipée. Cela concerne tout ce qui est dessiné <strong>avant</strong> l'appel de la fonction. <code>clip</code></p>
+<pre><code class="language-cpp">path boite = box((0,0),(0,1));
+clip(boite);
 </code></pre>
 
                     </main>
