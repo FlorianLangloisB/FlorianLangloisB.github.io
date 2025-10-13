@@ -186,9 +186,12 @@
 <li><a href="#21---les-chemins">2.1 - Les chemins </a></li>
 <li><a href="#22---op%C3%A9rations-sur-les-chemins">2.2 - Opérations sur les chemins</a></li>
 <li><a href="#23---la-fonction-draw">2.3 - La fonction <code>draw</code> </a></li>
+<li><a href="#24---la-fonction-fill">2.4 - La fonction <code>fill</code></a></li>
+<li><a href="#25---placer-des-points">2.5 - Placer des points</a></li>
 </ul>
 </li>
 <li><a href="#3---tailles">3 - Tailles </a></li>
+<li><a href="#4---boucle-for">4 - Boucle <code>for</code></a></li>
 </ul>
 <h2 id="1---ecrire-du-texte"><a class="header" href="#1---ecrire-du-texte">1 - Ecrire du texte</a></h2>
 <pre><code class="language-cpp">label("Hello world");
@@ -230,7 +233,7 @@ arc((0,0), (2,0), (3,4),direction=CW)
 
 /* === Polygones === */
 box((0,0), (2,1)) /*Rectangle avec deux coins opposés */
-polygon(5) /*Polygône régulier à 5 côtés */
+polygon(5) /*Polygône régulier à 5 côtés inscrit dans le cercle unité */
 </code></pre>
 <h3 id="22---opérations-sur-les-chemins"><a class="header" href="#22---opérations-sur-les-chemins">2.2 - Opérations sur les chemins</a></h3>
 <pre><code class="language-cpp">/* === Deux chemins peuvent s'enchaîner === */
@@ -257,9 +260,45 @@ draw(p,arrow = Arrow); /*Rajouter une flèche au bout*/
 <pre><code class="language-cpp">draw(p,marker=MarkFill[0]); /*Rajouter un marqueur aux points du tracé*/
 </code></pre>
 <p><img src="https://i.imgur.com/yHe48GB.png" alt="Les différents marqueurs" /></p>
+<h3 id="24---la-fonction-fill"><a class="header" href="#24---la-fonction-fill">2.4 - La fonction <code>fill</code></a></h3>
+<pre><code class="language-cpp">path p = (0,0){up} .. (1,1) .. (2,sqrt(2)) -- (2,0) -- cycle;
+fill(p);
+fill(p,blue);
+</code></pre>
+<h3 id="25---placer-des-points"><a class="header" href="#25---placer-des-points">2.5 - Placer des points</a></h3>
+<pre><code class="language-cpp">dot((2,1));
+dot((42,9), red);
+</code></pre>
 <h2 id="3---tailles"><a class="header" href="#3---tailles">3 - Tailles</a></h2>
 <p>Il s'agit de la taille du rendu dans le pdf final.</p>
 <pre><code class="language-cpp">unitsize(1cm); /*Taille de l'unité */
+size(3cm); /*Agrandit le plus possible de sorte que ni l'horizontal ni le vertical ne dépasse 3cm */
+size(2cm,3cm); 
+/*will ordinarily produce a picture that is either 2 centimeters wide (and ≤ 3 centimeters tall) or a picture that is 3 centimeters tall (and ≤ 2 centimeters wide). In either case, the height-to-width ratio is preserved */
+size(4cm,0); 
+/* will ordinarily be scaled so that the width is exactly 4 centimeters. The height will be the “natural” height for this scaling factor. */
+size(real, real, keepAspect=false); 
+/* will scale the width and height independently so that the resulting picture has exactly the specified width and height, but the height-to-width ratio is allowed to change */
+</code></pre>
+<p>Notion de marge lors du début et de la fin d'un chemin :</p>
+<pre><code class="language-cpp">real epaisseur = linewidth(currentpen);
+margin ArrowMargins = TrueMargin(linewidth, 0.5 linewidth);
+path p = arc((0,0), (2,0), (3,4));
+draw(p, arrow=Arrow(TeXHead), red, margin=ArrowMargins);
+</code></pre>
+<h2 id="4---boucle-for"><a class="header" href="#4---boucle-for">4 - Boucle <code>for</code></a></h2>
+<p>Un exemple d'utilisation :</p>
+<pre><code class="language-cpp">for (int n = 3; n &lt;= 7; ++n) 
+{
+    path p = shift(2.2*n, 0) * polygon(n);
+    draw(p,red);
+}
+</code></pre>
+<h2 id="5---les-différents-types-de-variables"><a class="header" href="#5---les-différents-types-de-variables">5 - Les différents types de variables</a></h2>
+<pre><code class="language-cpp">path p = (0,0) -- (1,0); /*Chemins*/
+pair A = (0,0); /*Points*/
+real x = -0.1; /*Doubles*/
+arrowbar a = Arrow(TeXHead); /*Tête de flèches*/
 </code></pre>
 
                     </main>
