@@ -197,67 +197,70 @@ label("Hello world", p = fontsize(100pt)); /*Changer la taille de police de mani
 label("Hello world", (5,3)); /*Changer la position du texte */
 </code></pre>
 <h2 id="2---dessin-en-2d"><a class="header" href="#2---dessin-en-2d">2 - Dessin en 2D</a></h2>
-<h3 id="21---tailles"><a class="header" href="#21---tailles">2.1 - Tailles</a></h3>
+<h3 id="21---les-chemins"><a class="header" href="#21---les-chemins">2.1 - Les chemins</a></h3>
+<p>Un chemin désigne le parcourt du stylo qui va tracer la figure voulue. On peut le stocker dans une variable de type <code>path</code> et le donner comme argument à la fonction <code>draw</code> pour le tracer, ou directement donner le chemin à la fonction <code>draw</code>.</p>
+<pre><code class="language-cpp">path p = (0,0) -- (1,0); /*chemin reliant deux point*/
+draw(p);  /*Pour tracer un chemin */
+draw((0,0) -- (1,0)); /*Peut être indiqué directement dans la fonction draw */
+</code></pre>
+<p>Quelques exemples de chemin à stocker dans une variable de type <code>path</code> ou à donner à la fonction <code>draw</code> :</p>
+<pre><code class="language-cpp">/* === Chemins basiques === */
+(0,0) -- (1,1) -- (2,sqrt(2)) -- cycle /*Revenir au point de départ*/
+(0,0) -- (1,1) -- (2,sqrt(2)) /*Ligne brisée */
+(0,0) .. (1,1) .. (2,sqrt(2)) /*Ligne courbe*/
+
+/* === Tangentes en un point du chemin === */
+(0,0){up} .. (1,1) ..(2,sqrt(2)) /*up,down,left,right */
+/*On peut indiquer les coordonnées d'un vecteur tangent, avant l'arrivée au point ou après */
+(0,0){(1,1)} .. {right}(pi/2,1){left} .. {(1,-1)}(pi,0) 
+
+/* === Cercles et ellipses === */
+unitcircle /*Cercle unité*/
+circle((0,1), 0.5)  /*Cercle avec son centre et son rayon*/
+ellipse((1,0), 1.5, 0.5) /*Ellipse avec son centre, son diamètre horizontal et son diamètre vertical */
+
+/* === Arc === */
+arc((2,1), 2, 60, 80) /*Centre de l'arc, rayon, degré début, degré fin */
+/*Sens trigo si angle1 &lt; angle2, horaire sinon */
+arc((0,0), r=1, angle1=270, angle2=0)
+/*Possibilité d'indiquer le centre, un point de la direction commençant et un point de la direction finissante*/
+arc((0,0), (2,0), (3,4)) 
+/*Possibilité d'indiquer la direction : CW=horaire, CCW=trigo */
+arc((0,0), (2,0), (3,4),direction=CW) 
+
+/* === Polygones === */
+box((0,0), (2,1)) /*Rectangle avec deux coins opposés */
+polygon(5) /*Polygône régulier à 5 côtés */
+</code></pre>
+<h3 id="22---opérations-sur-les-chemins"><a class="header" href="#22---opérations-sur-les-chemins">2.2 - Opérations sur les chemins</a></h3>
+<pre><code class="language-cpp">/* === Deux chemins peuvent s'enchaîner === */
+path p = arc((2,1), 2, 60, 80);
+path q = (2,1) -- p -- cycle;
+
+/* === Transformations géométriques === */
+shift(1,2)*p /*Translation */
+xscale(1.6)*p /*Homothétie horizontale*/
+yscale(1.4)*p /*Hmothétie verticale*/
+scale(1.8)*P /*Homothétie*/
+rotate(60)*p /*Dans le sens trigonométrique, angle en degrés */
+shift(-2,0) * rotate(45) * yscale(0.5) * p /*Possibilité d'en enchaîner avec *  */
+</code></pre>
+<h3 id="23---la-fonction-draw"><a class="header" href="#23---la-fonction-draw">2.3 - La fonction <code>draw</code></a></h3>
+<pre><code class="language-cpp">path p = (0,0) -- (1,0);
+draw(p);
+draw(p,red); /*Couleur*/
+draw(p,linewidth(2.0pt)) /*Epaisseur du tracé*/
+draw(p,black + linewidth(2.0pt)); /*Possibilité de combiner plusieurs effets*/
+draw(p,arrow = Arrow); /*Rajouter une flèche au bout*/
+</code></pre>
+<p><img src="https://i.imgur.com/9eYGZoM.png" alt="Les différentes apparences de flèches" /></p>
+<pre><code class="language-cpp">draw(p,marker=MarkFill[0]); /*Rajouter un marqueur aux points du tracé*/
+</code></pre>
+<p><img src="https://i.imgur.com/yHe48GB.png" alt="Les différents marqueurs" /></p>
+<h2 id="3---tailles"><a class="header" href="#3---tailles">3 - Tailles</a></h2>
+<p>Il s'agit de la taille du rendu dans le pdf final.</p>
 <pre><code class="language-cpp">unitsize(1cm); /*Taille de l'unité */
 </code></pre>
-<h3 id="22---lignes-et-courbes"><a class="header" href="#22---lignes-et-courbes">2.2 - Lignes et courbes</a></h3>
-<pre><code class="language-cpp">draw((0,0) -- (1,0));
-draw((0,0) -- (1,0), arrow = Arrow); /*Rajouter une flèche au bout*/
-</code></pre>
-<p><img src="https://i.imgur.com/BBIP7SX.png" alt="Les différentes apparences de flèches" /></p>
-<pre><code class="language-cpp">draw((0,0) -- (1,1) -- (2,sqrt(2))); /*Ligne brisée*/
-draw((0,0) .. (1,1) .. (2,sqrt(2))); /*Ligne plus courbée*/
-draw((0,0) -- (1,1) -- (2,sqrt(2)) -- cycle); /*Revenir au début*/
-
-/*Ajouter des directions de tangentes */
-draw((0,0){up} .. (1,1) ..(2,sqrt(2))); 
-draw((0,0){(1,1)} .. {right}(pi/2,1){left} .. {(1,-1)}(pi,0));
-
-/*Ajouter des marqueurs aux points */
-draw((0,0) .. (pi/2,1) .. (pi,0).. (3*pi/2,-1) .. (2*pi, 0),marker=MarkFill[0]);
-</code></pre>
-<p><img src="https://i.imgur.com/5mx4JAo.png" alt="Marqueurs des points d&#39;un chemin" /></p>
-<p><img src="https://i.imgur.com/4mEfNrv.png" alt="Les différents marqueurs" /></p>
-<h3 id="23---figures-géométriques-de-base"><a class="header" href="#23---figures-géométriques-de-base">2.3 - Figures géométriques de base</a></h3>
-<pre><code class="language-cpp">/*Cercles et ellipses */
-draw(unitcircle); /*Cercle unité*/
-draw(circle((0,1), 0.5), red); /*Centre, rayon, couleur du tracé */
-draw(ellipse((1,0), 1.5, 0.5));
-
-/*Polygones*/
-draw(box((0,0), (2,1))); /*Rectangle avec deux coins opposés*/
-draw(polygon(5)); /*Polygone régulier à 5 côtés*/
-
-/*Arc de cercle */
-draw(arc((2,1), 2, 60, 80)); /*Centre, rayon, degré début, degré fin*/
-/*Sens trigo si angle1 &lt; angle2, horaire sinon */
-draw(arc((0,0), r=1, angle1=270, angle2=0),arrow=Arrow(TeXHead)); 
-/*On peut plutôt indiquer un point de début et un point d'arriver en termes de droite passant par l'origine, avec CW pour horaire et CCW pour trigo */
-draw(arc((0,0), (2,0), (3,4), direction=CW),arrow=Arrow(TeXHead), blue);
-</code></pre>
-<h3 id="24---chemins-et-transformations-géométriques"><a class="header" href="#24---chemins-et-transformations-géométriques">2.4 - Chemins et transformations géométriques</a></h3>
-<p>Ce que l'on donne à manger à <code>draw</code> c'est une variable de type <code>path</code>.</p>
-<pre><code class="language-cpp">path p = box((0,0), (1,1));
-draw(p);
-draw(p, black + linewidth(2.0pt));
-
-path q = arc((2,1), 2, 60, 80);
-draw((2,1) -- q -- cycle); /*Deux chemins peuvent s'enchaîner */
-</code></pre>
-<p>On peut faire subir différentes transformations géométriques à un chemin :</p>
-<pre><code class="language-cpp">draw(shift(1,2)*p, blue);
-draw(xscale(1.6)*p, green);
-draw(yscale(1.4)*p, orange);
-draw(scale(1.8)*p, red);
-draw(rotate(60)*p, purple); /*Rotation de 60 degrés sens trigonométrique*/
-</code></pre>
-<p>On enchaîne plusieurs transformations géométriques en les composant avec <code>*</code> :</p>
-<pre><code class="language-cpp">path p = unitcircle;
-draw(p, black);
-path q = shift(-2,0) * rotate(45) * yscale(0.5) * p;
-draw(q, blue);
-</code></pre>
-<p>On</p>
 
                     </main>
 
