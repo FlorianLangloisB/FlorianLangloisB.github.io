@@ -298,8 +298,8 @@ vectoriels, qui me seront très utiles dans mes différents livres de mathémati
 </ul>
 </li>
 </ul>
-<h1 id="0---généralités"><a class="header" href="#0---généralités">0 - Généralités</a></h1>
 <hr />
+<h1 id="0---généralités"><a class="header" href="#0---généralités">0 - Généralités</a></h1>
 <h2 id="01---types-de-variables"><a class="header" href="#01---types-de-variables">0.1 - Types de variables</a></h2>
 <pre><code class="language-cpp">// === Types classiques ===
 real t = 1.5; //double
@@ -316,6 +316,10 @@ arrowbar a = Arrow(TeXHead); //Tête de flèches
 <pre><code class="language-cpp">real t = 1.5;
 string s = (string) t; //Conversion de t de real en string
 </code></pre>
+<p>Les <code>array</code> sont les listes, pour les déclarer on met le type suivit de <code>[]</code>, par exemple :</p>
+<pre><code class="language-cpp">path[] p = // array de path
+path[][] p = //array d'array de path
+</code></pre>
 <h2 id="02---boucle-for"><a class="header" href="#02---boucle-for">0.2 - Boucle <code>for</code></a></h2>
 <p>Un exemple d'utilisation :</p>
 <pre><code class="language-cpp">for (int n = 3; n &lt;= 7; ++n) 
@@ -324,6 +328,7 @@ string s = (string) t; //Conversion de t de real en string
     draw(p,red);
 }
 </code></pre>
+<hr />
 <h1 id="1---dessins-en-2d"><a class="header" href="#1---dessins-en-2d">1 - Dessins en 2D</a></h1>
 <h2 id="11---ecrire-du-texte"><a class="header" href="#11---ecrire-du-texte">1.1 - Ecrire du texte</a></h2>
 <pre><code class="language-cpp">label("Hello world");
@@ -348,6 +353,7 @@ draw((0,0) -- (1,0)); // Peut être indiqué directement dans la fonction draw
 (0,0) -- (1,1) -- (2,sqrt(2)) -- cycle // Revenir au point de départ
 (0,0) -- (1,1) -- (2,sqrt(2)) // Ligne brisée
 (0,0) .. (1,1) .. (2,sqrt(2)) // Ligne courbe
+(0,0) -- (1,1) ^^ (2,sqrt(2)) .. (2,2); //Par morceaux (array : path[] et non path)
 
 //  === Tangentes en un point du chemin ===
 (0,0){up} .. (1,1) ..(2,sqrt(2)) // up,down,left,right
@@ -418,6 +424,18 @@ real[][] arr_arr intersections(p,q); // Array à double entrées
 <pre><code class="language-cpp">pair = intersectionpoint(p,q); //le premier point d'intersection
 pair[] arr = intersectionpoints(p,q); // array de tous les points d'intersection
 </code></pre>
+<p>On peut déterminer le vecteur tangent à un chemin en utilisant un moment :</p>
+<pre><code class="language-cpp">path p = (1/2,0) .. (-1/3,0) .. (1/2,-1/2) .. (1,0) .. (-1/2,1/2);
+path l = (-1,-1) -- (1,1);
+draw(l,dashed+gray);
+draw(p, gray);
+for (real[] pathtime : intersections(p,l)) 
+{
+  real t = pathtime[0];
+  pair tangent = dir(p, t); //ici
+  draw(shift(point(p,t)) * scale(1/2) * ((0,0) -- tangent),arrow=Arrow); //pour le placer
+}
+</code></pre>
 <h3 id="135---la-fonction-draw"><a class="header" href="#135---la-fonction-draw">1.3.5 - La fonction <code>draw</code></a></h3>
 <pre><code class="language-cpp">path p = (0,0) -- (1,0);
 draw(p);
@@ -462,6 +480,7 @@ draw(p, arrow=Arrow(TeXHead), red, margin=ArrowMargins);
 <pre><code class="language-cpp">path boite = box((0,0),(0,1));
 clip(boite);
 </code></pre>
+<hr />
 <div style="break-before: page; page-break-before: always;"></div><h1 id="histoire"><a class="header" href="#histoire">Histoire</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="pop-culture"><a class="header" href="#pop-culture">Pop Culture</a></h1>
 
