@@ -197,11 +197,17 @@
 <li><a href="#133---op%C3%A9rations-sur-les-chemins">1.3.3 - Opérations sur les chemins</a></li>
 <li><a href="#134---moments-et-intersections">1.3.4 - Moments et intersections</a></li>
 <li><a href="#135---la-fonction-draw">1.3.5 - La fonction <code>draw</code> </a></li>
-<li><a href="#136---la-fonction-fill">1.3.6 - La fonction <code>fill</code></a></li>
+<li><a href="#136---les-fonctions-fill-et-filldraw">a</a></li>
 </ul>
 </li>
-<li><a href="#14---tailles">1.4 - Tailles</a></li>
-<li><a href="#15---clip-une-zone">1.5 - Clip une zone</a></li>
+<li><a href="#14---tracer-des-fonctions">1.4 - Tracer des fonctions</a>
+<ul>
+<li><a href="#141---basique">1.4.1 - Basique</a></li>
+<li><a href="#142---courbes-param%C3%A9tr%C3%A9es">1.4.2 - Courbes paramétrées</a></li>
+</ul>
+</li>
+<li><a href="#15---tailles">1.5 - Tailles</a></li>
+<li><a href="#16---clip-une-zone">1.6 - Clip une zone</a></li>
 </ul>
 </li>
 </ul>
@@ -217,15 +223,21 @@ path p = (0,0) -- (1,0); //chemins
 pair P = (0,0); //Points
 
 // === Dessin ===
+Label L = Label("Bonjour $1+1=2$"); //Du texte
 arrowbar a = Arrow(TeXHead); //Tête de flèches
 </code></pre>
 <p>Réaliser un cast (conversion si possible d'un type vers un autre) :</p>
 <pre><code class="language-cpp">real t = 1.5;
 string s = (string) t; //Conversion de t de real en string
 </code></pre>
-<p>Les <code>array</code> sont les listes, pour les déclarer on met le type suivit de <code>[]</code>, par exemple :</p>
-<pre><code class="language-cpp">path[] p = // array de path
-path[][] p = //array d'array de path
+<p>Les <code>array</code> sont les listes, pour les déclarer on met le type suivit de <code>[]</code>, et pour définir explicitement on met la liste des éléments entre <code>{}</code>, par exemple :</p>
+<pre><code class="language-cpp">pair p = (0,1); // Un point
+pair[] L = {(0,1),(-5,2),(3,3)}; //Un array de points
+pair[][] L2 = { {(0,1),(-5,2),(3,3)} , {(8,-8),(3,0)} }; //un array d'arrays de points
+</code></pre>
+<p>Pour rajouter un élément à un array, on peut utiliser la méthode <code>.push()</code>, par exemple :</p>
+<pre><code class="language-cpp">real [] L = {5,-2,3.5};
+L.push(0.33); //rajoute l'élément 0.33 à l'array L
 </code></pre>
 <h2 id="02---boucle-for"><a class="header" href="#02---boucle-for">0.2 - Boucle <code>for</code></a></h2>
 <p>Un exemple d'utilisation :</p>
@@ -238,10 +250,24 @@ path[][] p = //array d'array de path
 <hr />
 <h1 id="1---dessins-en-2d"><a class="header" href="#1---dessins-en-2d">1 - Dessins en 2D</a></h1>
 <h2 id="11---ecrire-du-texte"><a class="header" href="#11---ecrire-du-texte">1.1 - Ecrire du texte</a></h2>
+<p>Pour écrire du texte, on utilise <code>label()</code> :</p>
 <pre><code class="language-cpp">label("Hello world");
 defaultpen(fontsize(100pt));  // Changer la taille de police de manière globale
 label("Hello world", p = fontsize(100pt)); // Changer la taille de police de manière locale
 label("Hello world", (5,3)); // Changer la position du texte
+label("Hello world", (5,3),align=E); //A l'Est du point, Est = (1,0), N,S,W,E,NE,NW,SE,SW
+label("Hello world", (5,3),align=(1,0)); 
+</code></pre>
+<p>Pour instancier plutôt que placer directement, on utilise <code>Label()</code> :</p>
+<pre><code class="language-cpp">Label L1= Label("$x$", position=EndPoint); // EndPoint, MidPoint,BeginPoint
+draw((0,0) -- (0,4), arrow=Arrow(TeXHead),L=L1);
+</code></pre>
+<p>Plus généralement, <code>position=</code> peut prendre un réel $r\in[0,1]$ indiquant à quel portion du tracé on vient le placer ($0$ le début, $1$ la fin, $0.5$ le milieu, etc.)</p>
+<pre><code class="language-cpp">Label L2 = Label("$x$", position=0.3, align=(2,0)); // Vecteur de translation
+draw((0,0) -- (0,4), arrow=Arrow(TeXHead),L=L2);
+</code></pre>
+<p>Pour rajouter un fond derrière le texte (pour le rendre plus visible par exemple), on utilise <code>filltype</code> :</p>
+<pre><code class="language-cpp">Label L = Label("$f(x)$", align=(0,0),position=MidPoint, filltype=Fill(white));
 </code></pre>
 <h2 id="12---placer-des-points"><a class="header" href="#12---placer-des-points">1.2 - Placer des points</a></h2>
 <pre><code class="language-cpp">dot((2,1));
@@ -260,7 +286,7 @@ draw((0,0) -- (1,0)); // Peut être indiqué directement dans la fonction draw
 (0,0) -- (1,1) -- (2,sqrt(2)) -- cycle // Revenir au point de départ
 (0,0) -- (1,1) -- (2,sqrt(2)) // Ligne brisée
 (0,0) .. (1,1) .. (2,sqrt(2)) // Ligne courbe
-(0,0) -- (1,1) ^^ (2,sqrt(2)) .. (2,2); //Par morceaux (array : path[] et non path)
+(0,0) -- (1,1) ^^ (2,sqrt(2)) .. (2,2); // Array : équivalent de {(0,0) -- (1,1) , (2,sqrt(2)) .. (2,2)}
 
 //  === Tangentes en un point du chemin ===
 (0,0){up} .. (1,1) ..(2,sqrt(2)) // up,down,left,right
@@ -349,6 +375,8 @@ draw(p);
 draw(p,red); // Couleur
 draw(p,linewidth(2.0pt)) // Epaisseur du tracé
 draw(p,black + linewidth(2.0pt)); // Possibilité de combiner plusieurs effets
+draw(p,thin()); //Faible épaisseur
+draw(p,bar=Bars); //Barres au début et à la fin, autre : BeginBar,EndBar
 draw(p,arrow = Arrow); // Rajouter une flèche au bout
 </code></pre>
 <p><img src="https://i.imgur.com/9eYGZoM.png" alt="Les différentes apparences de flèches" /></p>
@@ -360,12 +388,35 @@ draw(p,arrow = Arrow(position = 0.5)); //Au milieu du premier morceau
 draw(p,marker=MarkFill[0]); 
 </code></pre>
 <p><img src="https://i.imgur.com/yHe48GB.png" alt="Les différents marqueurs" /></p>
-<h3 id="136---la-fonction-fill"><a class="header" href="#136---la-fonction-fill">1.3.6 - La fonction <code>fill</code></a></h3>
+<h3 id="136---les-fonctions-fill-et-filldraw"><a class="header" href="#136---les-fonctions-fill-et-filldraw">1.3.6 - Les fonctions <code>fill</code> et <code>filldraw</code></a></h3>
+<p>Pour remplir plutôt que dessiner, on utilise la fonction <code>fill</code></p>
 <pre><code class="language-cpp">path p = (0,0){up} .. (1,1) .. (2,sqrt(2)) -- (2,0) -- cycle;
 fill(p);
 fill(p,blue);
 </code></pre>
-<h2 id="14---tailles"><a class="header" href="#14---tailles">1.4 - Tailles</a></h2>
+<p>Pour faire les deux, on utilise <code>filldraw</code> :</p>
+<pre><code class="language-cpp">filldraw(p,black);
+</code></pre>
+<h2 id="14---tracer-des-fonctions"><a class="header" href="#14---tracer-des-fonctions">1.4 - Tracer des fonctions</a></h2>
+<h3 id="141---basique"><a class="header" href="#141---basique">1.4.1 - Basique</a></h3>
+<pre><code class="language-cpp">import graph; //Il faut l'importer
+real f(real x) //Définition de la fonction
+{
+	return sqrt(x);
+}
+path g = graph(f,0,2); //La fonction, de où à où
+path g = graph(f,0,2,n=200); //Combien de points
+path g = graph(f,0,2, Hermite); //Plus lisse
+</code></pre>
+<h3 id="142---courbes-paramétrées"><a class="header" href="#142---courbes-paramétrées">1.4.2 - Courbes paramétrées</a></h3>
+<pre><code class="language-cpp">import graph;
+pair F(real t) 
+{
+    return (1.3*t, -4.5*t^2 + 3.0*t + 1.0);
+}
+path g = graph(F, 0, 0.9);
+</code></pre>
+<h2 id="15---tailles"><a class="header" href="#15---tailles">1.5 - Tailles</a></h2>
 <p>Il s'agit de la taille du rendu dans le pdf final.</p>
 <pre><code class="language-cpp">unitsize(1cm); //Taille de l'unité 
 size(3cm); /*Agrandit le plus possible de sorte que ni l'horizontal ni le vertical ne dépasse 3cm */
@@ -382,7 +433,7 @@ margin ArrowMargins = TrueMargin(linewidth, 0.5 linewidth);
 path p = arc((0,0), (2,0), (3,4));
 draw(p, arrow=Arrow(TeXHead), red, margin=ArrowMargins);
 </code></pre>
-<h2 id="15---clip-une-zone"><a class="header" href="#15---clip-une-zone">1.5 - Clip une zone</a></h2>
+<h2 id="16---clip-une-zone"><a class="header" href="#16---clip-une-zone">1.6 - Clip une zone</a></h2>
 <p>La fonction <code>clip</code> permet de ne conserver des dessins que ce qui se situe dans la zone clipée. Cela concerne tout ce qui est dessiné <strong>avant</strong> l'appel de la fonction. <code>clip</code></p>
 <pre><code class="language-cpp">path boite = box((0,0),(0,1));
 clip(boite);
