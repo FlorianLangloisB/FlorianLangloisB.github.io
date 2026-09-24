@@ -59,3 +59,9 @@ html:has(.theme-maths) blockquote.q-rem{--c:#d99a1e}
 html:has(.theme-maths) blockquote.q-proof{--c:#8791a8;background:transparent;box-shadow:none;border-inline-start-style:dashed}
 html:has(.theme-maths) blockquote.q-proof::after{content:"∎";display:block;text-align:right;color:var(--c)}
 @media (max-width:600px){html:has(.theme-maths) .content main{padding:1rem 1rem 2rem;font-size:1.1rem}}
+
+/* Masquer la barre latérale et les flèches précédent/suivant */
+html:root{--sidebar-width:0px!important}
+#sidebar,.sidebar-resize-handle,#sidebar-toggle,
+.nav-chapters,.nav-wide-wrapper,.mobile-nav-chapters{display:none!important}
+.page-wrapper{margin-inline-start:0!important;transform:none!important}
