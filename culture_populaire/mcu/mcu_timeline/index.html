@@ -361,6 +361,10 @@ $('tl').addEventListener('click',e=>{const j=e.target.closest('[data-jump]');if(
 document.addEventListener('click',e=>{const t=e.target.closest('[data-pid]');if(t)pop(t);else if(!e.target.closest('#pop'))$('pop').hidden=true});
 addEventListener('scroll',()=>{$('pop').hidden=true},{passive:true});
 addEventListener('resize',()=>{clearTimeout(window.__rz);window.__rz=setTimeout(layoutLanes,150)});
+// Sur desktop, le bouton "Filtres" est masqué en CSS (les filtres sont censés être visibles
+// directement) : sans l'attribut "open", <details> les cacherait quand même, sans aucun moyen
+// de cliquer pour les rouvrir. Sur mobile, le bouton est visible : on part fermé par défaut.
+document.querySelector('.filters').open=matchMedia('(min-width:641px)').matches;
 $('cm').value=cm;$('cm').onchange=e=>{cm=e.target.value;try{localStorage.setItem(LS+'-cm',cm)}catch(x){}render()};
 $('q').oninput=e=>{F.q=e.target.value;render()};
 $('jump').onchange=e=>{const v=e.target.value;e.target.selectedIndex=0;if(isNaN(v))return;
