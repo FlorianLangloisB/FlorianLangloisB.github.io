@@ -99,6 +99,7 @@ ol{list-style:none;margin:0;padding:0}
     <summary>Filtres</summary>
     <div class="filters-body">
       <select id="jump" aria-label="Aller à un chapitre"></select>
+      <select id="period" aria-label="Filtrer par période"><option value="all">Toutes les périodes</option></select>
       <select id="cm" aria-label="Couleurs"><option value="mix">Couleurs : arc + timeline</option><option value="arc">Couleurs : par arc</option><option value="tl">Couleurs : par timeline</option></select>
       <div id="brs"></div>
     </div>
@@ -195,7 +196,7 @@ const LS='mcu-scenes-v1';
 const fmt=m=>{m=Math.round(m);return m>=60?`${Math.floor(m/60)} h ${String(m%60).padStart(2,'0')}`:`${m} min`};
 const tsf=ts=>ts.length>1?ts.map(([a,b,c])=>`${c}(${a} → ${b})`).join(' + '):ts.map(([a,b,c])=>c+a+' → '+b).join('');
 const yl=y=>y[0]==='-'?'– '+y.slice(1):y;
-const F={br:'all',q:''},okImg={},byId={},sceneRefs={};
+const F={br:'all',q:'',period:'all'},okImg={},byId={},sceneRefs={};
 const slug=w=>w.replace(/^(suite|fin)\s+(de |du |d')?/i,'').replace(/[ée]pisode\s*\d+/ig,'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 let items=[],ents=[],col={},cm='mix';try{cm=localStorage.getItem(LS+'-cm')||'mix'}catch(e){}
 
@@ -241,7 +242,7 @@ function sagaHtml(br,rows,tls){
 <div class="saga-body" id="${sagaId}" style="--gutter:${gutter}px"><svg class="saga-svg"></svg><div class="lane-labels"></div><ol>${rowsHtml}</ol></div></li>`;
 }
 function render(){
-  const q=F.q.toLowerCase(),act=F.br!=='all'||q,group=!act;
+  const q=F.q.toLowerCase(),act=F.br!=='all'||q||F.period!=='all',group=!act;
   $('cnt').textContent=`${ents.length} scènes · ${fmt(ents.reduce((n,e)=>n+e.dur,0))} de visionnage`;
   pendingLanes=[];
   let prev=null,html='',buf=null; // buf = bloc saga en cours de regroupement {br, rows:[], tls:[]}
@@ -254,6 +255,7 @@ function render(){
       return;
     }
     if(F.br!=='all'&&e.br!==(F.br==='main'?'':F.br))return;
+    if(F.period!=='all'&&String(e.sIdx)!==F.period)return;
     if(q&&!(e.t+' '+e.y+' '+e.d+' '+e.br+' '+e.sub).toLowerCase().includes(q))return;
     if(group&&e.br){
       if(!buf||buf.br!==e.br)flush();
@@ -362,16 +364,19 @@ addEventListener('resize',()=>{clearTimeout(window.__rz);window.__rz=setTimeout(
 $('cm').value=cm;$('cm').onchange=e=>{cm=e.target.value;try{localStorage.setItem(LS+'-cm',cm)}catch(x){}render()};
 $('q').oninput=e=>{F.q=e.target.value;render()};
 $('jump').onchange=e=>{const v=e.target.value;e.target.selectedIndex=0;if(isNaN(v))return;
-  F.br='all';F.q='';$('q').value='';chips();render();
+  F.br='all';F.q='';F.period='all';$('q').value='';$('period').value='all';chips();render();
   const el=$('s'+v);if(el)el.scrollIntoView()};
+$('period').onchange=e=>{F.period=e.target.value;render()};
 fetch('timeline.txt').then(r=>{if(!r.ok)throw 0;return r.text()}).then(async txt=>{
   items=parse(txt);ents=items.filter(e=>e.k==='e');
   ents.forEach(e=>byId[e.id]=e);
   ents.forEach(e=>{if(e.sceneId)sceneRefs[e.sceneId]=e.id});
-  let n=-1;items.forEach(e=>{if(e.k==='sec')n++;e.arc=Math.max(n,0)%8});
+  let n=-1;const secs=[];
+  items.forEach(e=>{if(e.k==='sec'){n++;secs.push(e.t)}e.arc=Math.max(n,0)%8;e.sIdx=Math.max(n,0)});
   [...new Set(ents.map(e=>e.br).filter(Boolean))].forEach((n,i)=>col[n]=`var(--p${i%5+1})`);
   items.forEach(e=>{if(e.k==='br'&&!col[e.t])col[e.t]='var(--p1)'});
   $('jump').innerHTML='<option>Aller à un chapitre…</option>'+items.map((e,i)=>e.k==='sec'?`<option value="${i}">${esc(e.t)}</option>`:'').join('');
+  $('period').innerHTML='<option value="all">Toutes les périodes</option>'+secs.map((t,i)=>`<option value="${i}">${esc(t)}</option>`).join('');
   ents.forEach(e=>e.slug=slug(e.w));
   const u=[...new Set(ents.map(e=>e.slug).filter(Boolean))];
   await Promise.all(u.map(s=>new Promise(r=>{const i=new Image();i.onload=()=>{okImg[s]=1;r()};i.onerror=r;i.src=`images/${s}.jpg`})));
