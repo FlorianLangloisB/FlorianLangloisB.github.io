@@ -176,7 +176,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="asymptote"><a class="header" href="#asymptote">Asymptote</a></h1>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="asymptote"><a class="header" href="#asymptote">Asymptote</a></h1>
 <p><strong>Asymptote</strong> est un langage qui permet de faire du dessin vectoriel. Je l'apprends afin de réaliser les différents dessins que je vais mettre dans mes ouvrages de mathématiques. Actuellement j'utilise la bibliothèque TikZ en LaTeX mais elle connait ses limites dans le sens où elle est très complexe à utiliser : Asymptote se veut comme une alternative.</p>
 <p>Je vais réunir ici les différentes commandes que j'ai apprises afin de me faire un récaptitulatif. On peut utiliser Asymptote directement en ligne via <a href="https://asymptote.ualberta.ca/">ce site internet</a>. Pour apprendre, je consulte <a href="https://asymptote.sourceforge.io/asymptote_tutorial.pdf">le document suivant</a>.</p>
 <p><strong>Sommaire</strong></p>
@@ -263,7 +264,7 @@ label("Hello world", (5,3),align=(1,0));
 <pre><code class="language-cpp">Label L1= Label("$x$", position=EndPoint); // EndPoint, MidPoint,BeginPoint
 draw((0,0) -- (0,4), arrow=Arrow(TeXHead),L=L1);
 </code></pre>
-<p>Plus généralement, <code>position=</code> peut prendre un réel $r\in[0,1]$ indiquant à quel portion du tracé on vient le placer ($0$ le début, $1$ la fin, $0.5$ le milieu, etc.)</p>
+<p>Plus généralement, <code>position=</code> peut prendre un réel <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span> indiquant à quel portion du tracé on vient le placer (<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> le début, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> la fin, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.5</span></span></span></span> le milieu, etc.)</p>
 <pre><code class="language-cpp">Label L2 = Label("$x$", position=0.3, align=(2,0)); // Vecteur de translation
 draw((0,0) -- (0,4), arrow=Arrow(TeXHead),L=L2);
 </code></pre>
@@ -326,10 +327,10 @@ rotate(60)*p // Dans le sens trigonométrique, angle en degrés
 shift(-2,0) * rotate(45) * yscale(0.5) * p // Possibilité d'en enchaîner avec *
 </code></pre>
 <h3 id="134---moments-et-intersections"><a class="header" href="#134---moments-et-intersections">1.3.4 - Moments et intersections</a></h3>
-<p>Un moment d'un chemin <code>p</code> c'est un réel $t\in[0,1]$ représentant une proportion de la longueur de <code>p</code> qui a été parcourue. Par exemple si $t=0.5$ alors cela représente la moitié du parcourt de <code>p</code>.</p>
+<p>Un moment d'un chemin <code>p</code> c'est un réel <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6542em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span> représentant une proportion de la longueur de <code>p</code> qui a été parcourue. Par exemple si <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.5</span></span></span></span> alors cela représente la moitié du parcourt de <code>p</code>.</p>
 <pre><code class="language-cpp">path sous_chemin = subpath(p,0.25,0.75); //Sous-chemin de 25% du parcourt jusqu'à 75% du parcourt
 </code></pre>
-<p>Pour un chemin <code>p</code>, si jamais il intersecte la droite d'équation $x=a$ un certain nombre de fois (possiblement 1 fois), on peut récupérer la liste des "<em>moments</em>" où ça s'est produit avec <code>times</code> (un moment étant un réel $t\in[0,1]$ représentant la proportion de la longueur du chemin <code>p</code> parcourut).</p>
+<p>Pour un chemin <code>p</code>, si jamais il intersecte la droite d'équation <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> un certain nombre de fois (possiblement 1 fois), on peut récupérer la liste des "<em>moments</em>" où ça s'est produit avec <code>times</code> (un moment étant un réel <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6542em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span> représentant la proportion de la longueur du chemin <code>p</code> parcourut).</p>
 <pre><code class="language-cpp">// === Intersection entre un chemin et une droite x=a ===
 path p = (0,0) -- (3,0);
 real[] arr = times(p,1.5); // Array des moments où p et x=1.5 s'intersectent 
@@ -449,7 +450,7 @@ clip(boite);
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../histoire.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../mcu/mcu_timeline.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -463,7 +464,7 @@ clip(boite);
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../histoire.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../mcu/mcu_timeline.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

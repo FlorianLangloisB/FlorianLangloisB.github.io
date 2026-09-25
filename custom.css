@@ -65,3 +65,5 @@ html:root{--sidebar-width:0px!important}
 #sidebar,.sidebar-resize-handle,#sidebar-toggle,
 .nav-chapters,.nav-wide-wrapper,.mobile-nav-chapters{display:none!important}
 .page-wrapper{margin-inline-start:0!important;transform:none!important}
+
+#theme-toggle, #theme-list{display:none!important}
