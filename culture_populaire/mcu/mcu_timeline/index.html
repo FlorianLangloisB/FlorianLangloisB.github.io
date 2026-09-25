@@ -62,14 +62,10 @@ ol{list-style:none;margin:0;padding:0}
 #pop{position:fixed;z-index:20;width:min(580px,calc(100vw - 16px));background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 40px #000a;padding:.6rem;pointer-events:none}
 #pop[hidden]{display:none}
 #pop img{display:block;width:100%;height:auto;max-height:80vh;object-fit:contain;border-radius:8px}
-#pop iframe{display:block;width:100%;border-radius:8px}
 #pop b{display:block;margin:.6rem .2rem .1rem;font-size:1.05rem}
 #pop small{display:block;margin:0 .2rem;color:var(--pc)}
 #pop p{margin:.5rem .2rem .2rem;line-height:1.45;white-space:pre-line}
-#pop a{color:var(--pc);pointer-events:auto}
-.poster-wrap{position:relative;display:block;width:112px;flex:none;cursor:zoom-in}
-.poster{width:100%;height:auto;display:block;border-radius:8px;background:var(--bg);box-shadow:0 2px 10px #0006}
-.poster-wrap .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;text-shadow:0 1px 6px #000c;pointer-events:none}
+.poster{width:112px;height:auto;border-radius:8px;flex:none;background:var(--bg);box-shadow:0 2px 10px #0006}
 .m{font-size:.82rem;color:var(--mut)}
 .brblock{margin:.3rem 0 1.1rem;padding-left:1rem;border-left:3px solid var(--pc)}
 .brblock .bh{display:inline-flex;align-items:center;gap:.45rem;font-weight:700;font-size:.82rem;color:var(--pc);letter-spacing:.02em;margin:.4rem 0 .6rem;padding:.2rem .7rem;border:1px solid var(--pc);border-radius:99px}
@@ -89,7 +85,7 @@ ol{list-style:none;margin:0;padding:0}
 .row.flash .card{outline:2px solid var(--pc);outline-offset:2px}
 .ts{font-size:.82rem;color:var(--mut);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
 .msg{color:var(--mut);padding:2rem 0}
-@media (max-width:520px){.row,.br{gap:0 .6rem}.poster-wrap{width:76px}}
+@media (max-width:520px){.row,.br{gap:0 .6rem}.poster{width:76px}}
 </style>
 </head>
 <body>
@@ -179,7 +175,6 @@ function parse(txt){
     const d=m[1].trim(),y4=d.match(/-?\d{3,4}/),e={k:'e',ts:[],br,sub,tlid,dur:0};
     let body=m[2],r;
     r=tag(body,'img');body=r.rest;if(r.val&&r.val!==true)e.img=r.val;
-    r=tag(body,'yt');body=r.rest;if(r.val&&r.val!==true)e.yt=r.val;
     r=tag(body,'info');body=r.rest;if(r.val&&r.val!==true)e.info=r.val;
     r=tag(body,'id');body=r.rest;if(r.val&&r.val!==true)e.sceneId=r.val;
     r=tag(body,'depuis');body=r.rest;if(r.val&&r.val!==true)e.linkFrom=r.val;
@@ -204,14 +199,6 @@ const tsf=ts=>ts.length>1?ts.map(([a,b,c])=>`${c}(${a} → ${b})`).join(' + '):t
 const yl=y=>y[0]==='-'?'– '+y.slice(1):y;
 const F={br:'all',q:'',period:'all'},okImg={},byId={},sceneRefs={};
 const slug=w=>w.replace(/^(suite|fin)\s+(de |du |d')?/i,'').replace(/[ée]pisode\s*\d+/ig,'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-// Accepte un lien YouTube sous toutes ses formes (watch?v=, youtu.be/, embed/, shorts/) ou un
-// identifiant déjà nu (11 caractères), posé via [yt: ...] sur une scène.
-function ytId(s){
-  s=(s||'').trim();
-  const m=s.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);
-  if(m)return m[1];
-  return /^[\w-]{11}$/.test(s)?s:null;
-}
 let items=[],ents=[],col={},cm='mix';try{cm=localStorage.getItem(LS+'-cm')||'mix'}catch(e){}
 
 function chips(){
@@ -224,17 +211,14 @@ function chips(){
 }
 function rowHtml(e,first,laned){
   const bc=e.br?col[e.br]:'var(--p0)',ac=`var(--a${e.arc})`,dot=cm==='tl'?bc:ac,card=cm==='arc'?ac:bc;
-  const ytid=e.yt?ytId(e.yt):null;
-  // Pas d'image fournie/trouvée mais un lien YouTube : la miniature officielle sert de poster,
-  // pas besoin d'en avoir une en local.
-  const pic=e.img||(okImg[e.slug]?`images/${e.slug}.jpg`:'')||(ytid?`https://img.youtube.com/vi/${ytid}/hqdefault.jpg`:'');
+  const pic=e.img||(okImg[e.slug]?`images/${e.slug}.jpg`:'');
   const meta=[e.d?`(${e.d})`:'',!e.br&&e.sub?e.sub:'',e.dur?fmt(e.dur):''].filter(Boolean).join(' · ');
   const lkTarget=e.linkFrom||e.linkTo,lkId=lkTarget?sceneRefs[lkTarget]:null;
   const lk=lkId?`<button class="lk" type="button" data-jump="${esc(lkId)}">${e.linkFrom?'↳ depuis l’autre scène':'↳ voir la scène liée'}</button>`:'';
   // Dans un bloc à plusieurs rails, le point du rail (à gauche, dans la marge) suffit déjà à situer
   // la scène : on masque le point habituel de la ligne pour ne pas en avoir deux qui se dupliquent.
   return `<li class="row${laned?' laned':''}" data-rid="${e.id}" style="--pc:${card};--dc:${dot}"><div class="yr">${first?esc(yl(e.y)):''}</div><div class="rail"><i></i></div>
-<div class="card">${pic?`<span class="poster-wrap" data-pid="${e.id}"><img class="poster" src="${esc(pic)}" alt="" loading="lazy">${ytid?'<i class="play">▶</i>':''}</span>`:''}
+<div class="card">${pic?`<img class="poster" data-pid="${e.id}" src="${esc(pic)}" alt="" loading="lazy">`:''}
 <div class="body"><span class="t">${esc(e.s||e.w)}</span>${e.s?`<span class="w">${esc(e.w)}</span>`:''}
 ${e.ts.length?`<span class="ts">${tsf(e.ts)}</span>`:''}${meta||lk?`<span class="m">${esc(meta)}${lk}</span>`:''}${e.info&&!pic?`<button class="more" type="button" data-pid="${e.id}">ⓘ détails</button>`:''}</div></div></li>`;
 }
@@ -362,17 +346,10 @@ function place(t){const P=$('pop'),r=t.getBoundingClientRect(),w=P.offsetWidth,h
   P.style.left=Math.max(8,x)+'px';P.style.top=Math.max(8,Math.min(r.top,innerHeight-h-8))+'px'}
 function pop(t){
   const e=byId[t.dataset.pid];if(!e)return;
-  const ytid=e.yt?ytId(e.yt):null,P=$('pop');
-  const pic=e.img||(okImg[e.slug]?`images/${e.slug}.jpg`:'')||(ytid?`https://img.youtube.com/vi/${ytid}/hqdefault.jpg`:'');
-  // Vidéo YouTube : lecteur intégré (muet, pour respecter les règles d'autolecture des navigateurs
-  // et ne pas déclencher du son au survol) plutôt que l'image statique ; lien pour l'ouvrir avec le son.
-  const startSec=ytid&&e.ts.length?secs(e.ts[0][0]):0;
-  const media=ytid
-    ?`<iframe width="100%" height="326" src="https://www.youtube-nocookie.com/embed/${ytid}?start=${startSec}&autoplay=1&mute=1" title="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`
-    :(pic?`<img src="${esc(pic)}" alt="">`:'');
-  P.innerHTML=media+`<b>${esc(e.s||e.w)}</b>`+(e.s?`<small>${esc(e.w)}</small>`:'')+(e.info?`<p>${esc(e.info)}</p>`:'')+(ytid?`<p><a href="https://youtu.be/${ytid}" target="_blank" rel="noopener">Voir sur YouTube (avec le son) ↗</a></p>`:'');
+  const pic=e.img||(okImg[e.slug]?`images/${e.slug}.jpg`:''),P=$('pop');
+  P.innerHTML=(pic?`<img src="${esc(pic)}" alt="">`:'')+`<b>${esc(e.s||e.w)}</b>`+(e.s?`<small>${esc(e.w)}</small>`:'')+(e.info?`<p>${esc(e.info)}</p>`:'');
   P.hidden=false;place(t);
-  if(!ytid){const im=P.querySelector('img');if(im)im.onload=()=>place(t)}
+  const im=P.querySelector('img');if(im)im.onload=()=>place(t);
 }
 function jumpTo(rid){
   const row=document.querySelector(`.row[data-rid="${CSS.escape(rid)}"]`);if(!row)return;
