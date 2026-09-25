@@ -102,7 +102,7 @@ function parse(txt){
     if(/^Timeline\s*\d/i.test(s)){sub=s;continue}
     if(!(m=s.match(/^([^:]{1,70}?)\s*:\s*(.*)$/))){out.push({k:'sec',t:s});cur=null;continue}
     const d=m[1].trim(),y4=d.match(/-?\d{3,4}/),e={k:'e',ts:[],br,sub,dur:0};
-    e.t=clean(grab(e,m[2].replace(/\[img:\s*([^\]]+?)\s*\]/i,(_,q)=>{e.img=q;return ''}).replace(/\[info:\s*([^\]]+?)\s*\]/i,(_,q)=>{e.info=q;return ''})));
+    e.t=clean(grab(e,m[2].replace(/\[img\s*:\s*([^\]]+?)\s*\]/i,(_,q)=>{e.img=q;return ''}).replace(/\[info\s*:\s*([^\]]+?)\s*\]/i,(_,q)=>{e.info=q;return ''})));
     split(e);
     const big=y4?y4[0]:/\?\?\?/.test(d)?'???':'';
     e.y=big||d;
