@@ -9,7 +9,7 @@ html:root{
   --table-border-color:#3a3e72;--table-header-bg:#1f2244;--table-alternate-bg:#191c3a;
   --theme-popup-bg:#1f2244;--theme-popup-border:#3a3e72;--theme-hover:#262a55;
   --searchbar-bg:#1f2244;--searchbar-fg:#eceaf6;--searchbar-border-color:#3a3e72;--scrollbar:#3a3e72;
-  --content-max-width:850px;;
+  --content-max-width:850px;
 }
 body{
   background:radial-gradient(900px 500px at 85% -5%,#3a3f9a55,transparent) fixed,
