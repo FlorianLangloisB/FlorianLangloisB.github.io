@@ -1,7 +1,7 @@
 Avant le 20ème siècle
 
 -5000 : Arrivée des Éternels sur Terre en Mésopotamie - Eternals (1:12→6:42) [img:https://i.imgur.com/iakVwgt.png] [info:La date est directement montrée au moment de la scène.]
--2988: Première guerre des Asgardiens contre les Elfes Noirs - Thor 2 (0:30→3:38) [img:https://i.imgur.com/syGFnn7.png] [info:Thor explique à 36:50 que la Convergence a lieu tous les 5000 ans environ, et le film se déroule en 2013.]
+-2988: Première guerre des Asgardiens contre les Elfes Noirs - Thor 2 (0:30→3:38) [img:https://i.imgur.com/syGFnn7.png] [info:Durant la scène il y a la précédente Convergence. Thor explique à 36:50 que la Convergence a lieu tous les 5000 ans environ, et le film se déroule en 2013.]
 -575 : Les Eternels affrontent les déviants à Babylone - Eternals (20:22→30:39) [img:https://i.imgur.com/MszafD7.png] [info:La date est directement montrée au moment de la scène.]
 400 : Sersi et Ikaris se marient dans l'empire Gupta - Eternals (30:39→31:10) [img:https://i.imgur.com/wUXFjVg.png] [info:La date est directement montrée au moment de la scène.]
 ???:  Valkyrie affronte Hela – Thor 3 (1:19:15→1:19:55)
@@ -204,7 +204,7 @@ Jusqu’à la fin de Endgame
 2018: Groot joue aux jeux-vidéos – Scène post-générique n°4 de GotG2 (2:14:03→2:14:29)
 
 [---- Timeline des X-Men  ------------------------------------------------------------------------------]
-Timeline 1
+Timeline 1 (Timeline d'origine des X-Men)
 	-3600 : En Sabah Nur se fait ensevelir – X-Men Apocalypse (00:58→07:19)
 	1845 : La jeunesse de Logan – Wolverine 1 (00:38→04:28)
 	1860 : Logan et son frère dans la guerre de sécession - Wolverine 1 (04:28→04:50)
@@ -236,7 +236,7 @@ Timeline 2 (Wolverine remonte dans le temps)
 	2018 : Deadpool 2 avant Cable (02:31→17:42)+(19:11→24:13)+(0:36→02:31)+(24:13→31:00)
 	??? : Le futur de Cable (31:00→31:59)+(01:29:52→01:30:23)
 Timeline 3 (Cable retourne dans le passé)
-	2018 : Fin de Deadpool 2    		(32:00→02:02:32)+(02:04:22→02:04:52)+(02:05:10→02:07:48)+(02:13:24→02:13:50)	
+	2018 : Fin de Deadpool 2 (32:00→02:02:32)+(02:04:22→02:04:52)+(02:05:10→02:07:48)+(02:13:24→02:13:50)	
 [-------------------------------------------------------------------------------------------------------------------]
 
 2018 (14 mars) : Deadpool rencontre Happy Hogan – Deadpool 3 (07:12→11:25)
@@ -262,7 +262,8 @@ Timeline 3 (Cable retourne dans le passé)
 
 Loki
 
-[---- Timeline de Loki  ------------------------------------------------------------------------------------]
+[---- Timeline de Loki --------------------------------------------------------------------------]
+Timeline 1 (Timeline de la TVA)
 	Hors du temps: Passé de Sylvie - Intro Loki épisode 4 (1:45→3:26)
 	Hors du temps: Loki épisode 1 (5:07→45:30)
 	Hors du temps: Loki épisode 2 (2:00→36:15)
@@ -282,7 +283,7 @@ Loki
 	Hors du temps: Loki 2 épisode 4 (35:00→43:11)
 	Hors du temps: Loki 2 épisode 5 (01:47→05:08)+(05:27→39:37)
 	Hors du temps: Loki 2 épisode 6 (01:46→42:24)
-[------------------------------------------------------------------------------------------------------------]
+[------------------------------------------------------------------------------]
 
 WandaVision
 
@@ -363,11 +364,11 @@ Multivers de Spider-Man
 	 (0:35→1:45)+(2:23→1:55:34) +(1:57:45→1:59:23)+(2:07:17→2:08:56)
 2024 (Juin→Novembre) : Spider-Man : No Way Home jusqu’au sort de Docteur Strange (1:08→24:52)	
 [---- Timeline des Spider-Man --------------------------------------------------------------------------]
-Timeline 1	
+Timeline 1 (Spider-Man de Tobey Maguire)	
 	2002 : Spider-Man 1 (3:07→1:55:54)
 	2004 : Spider-Man 2 (3:01→2:11:05)
 	2005 : Spider-Man 3 (3:12→2:13:59)
-Timeline 2
+Timeline 2 (Spider-Man de Andrew Garfield)
 	??? : Richard Parker se sauve du labos – The Amazing Spider-Man 2 (0:49→1:55)
 	??? : Peter Parker joue à cache-cache – The Amazing Spider-Man 1 (0:59→2:22)
 	??? : Richard Parker s’enregistre – The Amazing-Spider-Man 2 (1:53→2:13) 
@@ -401,7 +402,10 @@ Jusqu’à GoTG 3
  +(2:31:26→2:33:54)
 
 2025 (juillet) : Ant-Man 3 (2:40→49:11)+[c](49:11→58:14)+(58:14→1:52:45)
+[---- Timeline de Loki --------------------------------------------------------------------------]
+Timeline 1 (Timeline de la TVA)
 Hors du temps: Loki 2 épisode 6 – La TVA constate Ant-Man 3 (42:30→50:55)
+[------------------------------------------------------------------------------]
 2025 (juillet) : Les Kangs se rassemblent – Scène post-crédit 1 de Ant-Man 3 (1:55:09→1:56:30)
 2025 (été, août probablement) : She-Hulk épisode 1 (0:39→2:47) + (28:13→30:22)
 2025 (été) : She-Hulk épisode 2 (1:41→5:03)+(5:12→9:28)+(24:42→25:12)+(9:29→22:52)
@@ -471,17 +475,19 @@ Jusqu’à ???
 2028 : Spider-Man : Brand New Day
 
 [---- Timeline des 4 Fantastics -----------------------------------------------------------------------]
-	??? : Les 4 Fantastics (00:14→01:43:43)
-	???(+4ans) : Doom approche le bébé – Les 4 Fantastics (01:45:44→01:46:40)
+Timeline 1 (Univers des 4 Fantastiques)
+	??? : Les 4 Fantastiques (00:14→01:43:43)
+	???(+4ans) : Doom approche le bébé – Les 4 Fantastiques (01:45:44→01:46:40)
 [------------------------------------------------------------------------------------------------------------]
 
 2029 (+14mois donc Janvier~Février?) : Les New Avengers détectent les 4 Fantastic – Thunderbolts* 
 	(02:03:28→02:06:20)
 
 [---- Timeline des X-Men  ----------------------------------------------------------------------------]
+Timeline 3 (Deadpool est revenue dans sa timeline)
 	2023 : Logan de l’autre timeline se réveille – X-Men : Days of Futur Past (02:14:01→02:18:16)
 	2029 : Logan (01:12→02:11:05)
-Timeline 4 (La TVA vient chercher Deadpool)
+Timeline 4 (Timeline de la TVA)
 	2024 : Deadpool vit sa vit – Deadpool 3 (11:30→18:00)
 	Fin des temps : Deadpool à la TVA – Deadpool 3 
 	(18:00→27:21)+(00:00→06:53)+(27:27→29:09)+(29:53→29:58)+(29:09→29:16)+(29:51→29:53)
