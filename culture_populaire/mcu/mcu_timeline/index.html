@@ -98,8 +98,7 @@ ol{list-style:none;margin:0;padding:0}
   <details class="filters">
     <summary>Filtres</summary>
     <div class="filters-body">
-      <select id="jump" aria-label="Aller à un chapitre"></select>
-      <select id="period" aria-label="Filtrer par période"><option value="all">Toutes les périodes</option></select>
+      <select id="period" aria-label="Aller à une période"><option value="all">Aller à une période…</option></select>
       <select id="cm" aria-label="Couleurs"><option value="mix">Couleurs : arc + timeline</option><option value="arc">Couleurs : par arc</option><option value="tl">Couleurs : par timeline</option></select>
       <div id="brs"></div>
     </div>
@@ -367,9 +366,6 @@ addEventListener('resize',()=>{clearTimeout(window.__rz);window.__rz=setTimeout(
 document.querySelector('.filters').open=matchMedia('(min-width:641px)').matches;
 $('cm').value=cm;$('cm').onchange=e=>{cm=e.target.value;try{localStorage.setItem(LS+'-cm',cm)}catch(x){}render()};
 $('q').oninput=e=>{F.q=e.target.value;render()};
-$('jump').onchange=e=>{const v=e.target.value;e.target.selectedIndex=0;if(isNaN(v))return;
-  F.br='all';F.q='';F.period='all';$('q').value='';$('period').value='all';chips();render();
-  const el=$('s'+v);if(el)el.scrollIntoView()};
 $('period').onchange=e=>{F.period=e.target.value;render()};
 fetch('timeline.txt').then(r=>{if(!r.ok)throw 0;return r.text()}).then(async txt=>{
   items=parse(txt);ents=items.filter(e=>e.k==='e');
@@ -379,8 +375,7 @@ fetch('timeline.txt').then(r=>{if(!r.ok)throw 0;return r.text()}).then(async txt
   items.forEach(e=>{if(e.k==='sec'){n++;secs.push(e.t)}e.arc=Math.max(n,0)%8;e.sIdx=Math.max(n,0)});
   [...new Set(ents.map(e=>e.br).filter(Boolean))].forEach((n,i)=>col[n]=`var(--p${i%5+1})`);
   items.forEach(e=>{if(e.k==='br'&&!col[e.t])col[e.t]='var(--p1)'});
-  $('jump').innerHTML='<option>Aller à un chapitre…</option>'+items.map((e,i)=>e.k==='sec'?`<option value="${i}">${esc(e.t)}</option>`:'').join('');
-  $('period').innerHTML='<option value="all">Toutes les périodes</option>'+secs.map((t,i)=>`<option value="${i}">${esc(t)}</option>`).join('');
+  $('period').innerHTML='<option value="all">Aller à une période…</option>'+secs.map((t,i)=>`<option value="${i}">${esc(t)}</option>`).join('');
   ents.forEach(e=>e.slug=slug(e.w));
   const u=[...new Set(ents.map(e=>e.slug).filter(Boolean))];
   await Promise.all(u.map(s=>new Promise(r=>{const i=new Image();i.onload=()=>{okImg[s]=1;r()};i.onerror=r;i.src=`images/${s}.jpg`})));
