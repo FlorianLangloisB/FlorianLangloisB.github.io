@@ -1,0 +1,82 @@
+# ============================================================================
+# Données des personnages — édite ce fichier pour changer le contenu de la page.
+#
+# Une FICHE = un bloc de lignes ; une LIGNE VIDE sépare deux personnages.
+# À l'intérieur d'une fiche, répartis le nom et les tags comme tu veux : un tag
+# par ligne (plus lisible pour une fiche chargée), ou tout sur une seule ligne
+# (pratique pour un personnage secondaire). Les deux styles peuvent se mélanger
+# dans le même fichier.
+#
+#   Nom du personnage
+#   [sagas: Saga1, Saga2]
+#   [oeuvres: Film1, Film2, ...]
+#   [img: chemin ou URL]
+#   [info: texte]
+#
+#   [sagas: ...]   une ou plusieurs sagas séparées par des virgules.
+#                  - la PREMIÈRE de la liste détermine la section (et sa couleur) où le
+#                    personnage est rangé sur la page ;
+#                  - toutes les sagas listées apparaissent en badges sur sa fiche, et
+#                    permettent de le retrouver via le filtre, quelle que soit la saga
+#                    choisie.
+#                  L'ordre des SECTIONS sur la page suit l'ordre d'apparition des sagas
+#                  dans ce fichier (en tant que saga principale) ; à l'intérieur d'une
+#                  section, les personnages sont triés alphabétiquement — pas besoin de
+#                  les ranger toi-même.
+#   [oeuvres: ...] liste des films/séries où il apparaît, séparés par des virgules.
+#                  Facultatif.
+#   [img: ...]     facultatif — portrait du personnage : un chemin local (images/xxx.jpg)
+#                  ou une URL complète (https://...) fonctionnent tous les deux. Si absent,
+#                  la page cherche automatiquement images/<nom-slugifié>.jpg (ex. "Tony
+#                  Stark" -> images/tony-stark.jpg). Si rien n'est trouvé, une pastille
+#                  avec l'initiale du nom est affichée à la place.
+#   [info: texte]  facultatif — note affichée dans la bulle au survol du portrait.
+#                  "\n" pour revenir à la ligne dans le texte affiché ; si tu laisses le
+#                  tag ouvert sur plusieurs lignes du fichier, elles sont simplement
+#                  jointes par un espace.
+#
+# Les lignes qui commencent par # sont ignorées, y compris à l'intérieur d'une fiche.
+# ============================================================================
+
+Tony Stark / Iron Man
+[img:https://i.ibb.co/F4wBK5zf/Capture-d-cran-2026-09-26-211518.png]
+[sagas: Iron Man, Avengers, Spider-Man, Captain America]
+[oeuvres: Iron Man, Iron Man 2, Avengers, Iron Man 3, Avengers 2, Captain America 3, Spider-Man MCU 1, Avengers 3, Avengers 4]
+[info: Pouvoirs : armure, intelligence, argent]
+
+Pepper Potts
+[img:https://i.ibb.co/39VX9SyF/image.png]
+[sagas: Iron Man, Avengers]
+[oeuvres: Iron Man, Iron Man 2, Avengers, Iron Man 3, Avengers 3, Avengers 4]
+[info: Pouvoirs : armure]
+
+James Rhodes / War Machine
+[img:https://i.ibb.co/7JfCs0Tc/image.png]
+[sagas: Iron Man, Avengers, Captain America]
+[oeuvres: Iron Man, Iron Man 2, Avengers, Iron Man 3, Avengers 2, Captain America 3, Avengers 3, Avengers 4, Falcon&Winter Soldier, Secret Invasion]
+[info: Pouvoirs: armure,entrainement dans l'armée]
+
+Happy Hogan
+[img:https://i.ibb.co/rRxcCs1b/image.png]
+[sagas: Iron Man, Spider-Man]
+
+Steve Rogers / Captain America
+[img:https://i.ibb.co/Kp7kM2Vd/image.png]
+[sagas: Captain America, Avengers]
+[info: Pouvoirs: capacité surhumaines, marteau de Thor]
+
+Thor
+[img:https://i.ibb.co/7t3xvt0M/image.png]
+[sagas: Thor, Avengers]
+
+Bruce Banner / Hulk
+[img:https://static.wikia.nocookie.net/heros/images/d/d3/Bruce_Banner_MCU_Infobox.jpg/revision/latest?cb=20200609171353&path-prefix=fr]
+[sagas: Hulk, Avengers, Thor, Spider-Man]
+
+Natasha Romanoff / Black Widow
+[img:https://i.ibb.co/Mk5dMtgx/image.png]
+[sagas:Black Widow,Avengers, Captain America]
+
+Nick Fury
+[img:https://i.ibb.co/DHQnhXk9/image.png]
+[sagas:Avengers,Captain America,Captain Marvel]
