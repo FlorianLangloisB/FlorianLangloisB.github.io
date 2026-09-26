@@ -97,7 +97,6 @@ Arc 4 - Thanos
 Arc 5 - Conséquences d'Endgame
 
 [---- Timeline de Loki ----]
-Timeline 1 : Loki de 2012 a récupéré le Tesseract
 Hors du temps : Loki S1 [sortie: 2021] [img:https://static.wikia.nocookie.net/marvelstudios/images/6/6f/FD222C89-65F7-40F2-8A9B-AE8966E3BD95.jpeg/revision/latest?cb=20210512161408&path-prefix=fr]
 Hors du temps : Loki S2 [sortie: 2023] [img:https://fr.web.img6.acsta.net/pictures/23/07/31/16/30/3834309.jpg]
 [--------------------------]
@@ -112,12 +111,12 @@ Hors du temps : Loki S2 [sortie: 2023] [img:https://fr.web.img6.acsta.net/pictur
 Arc 6 - Multiverse of Madness
 
 2024 : Spider-Man : Far From Home [sortie: 2019] [img:https://static.wikia.nocookie.net/marvelstudios/images/5/5e/D8xPkbSXoAAR7Z1.jpg/revision/latest?cb=20220422092422&path-prefix=fr]
-[---- Spider-Man (Pré MCU) ----]
-Timeline 1 : Tobey Maguire
+[---- Timelines du premier Spider-Man ----]
 2002 : Spider-Man [sortie: 2002] [img:https://fr.web.img3.acsta.net/c_310_420/medias/nmedia/00/00/00/33/spiderman.jpg]
 2004 : Spider-Man 2 [sortie: 2004] [img:https://fr.web.img4.acsta.net/medias/nmedia/18/35/16/02/18380826.jpg]
 2005 : Spider-Man 3 [sortie: 2007] [img:https://fr.web.img3.acsta.net/medias/nmedia/18/35/62/65/18754165.jpg]
-Timeline 2 : Andrew Garfield
+[--------------------]
+[---- Timelines du deuxième Spider-Man ----]
 2012 : The Amazing Spider-Man [sortie: 2012] [img:https://fr.web.img6.acsta.net/medias/nmedia/18/83/19/35/20158079.jpg]
 2014 : The Amazing Spider-Man [sortie: 2014] [img:https://fr.web.img6.acsta.net/pictures/14/01/08/18/54/426954.jpg]
 [--------------------]
@@ -141,15 +140,13 @@ Arc 8 - Nouvelles équipes
 2027 : Captain America: Brave New World [sortie: 2025] [img:https://thumb.wikimedia.org/wikipedia/en/thumb/a/a4/Captain_America_Brave_New_World_poster.jpg/250px-Captain_America_Brave_New_World_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail]
 2027 :Thunderbolts* [sortie: 2025] [img:https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIwji34UCZnRAs5INV1GT6AHQwVt7kW7C2-DxyztxTzQdnEglik-qtdyw&s=10]
 2028 : Spider-Man: Brand New Day [sortie: 2026] [img:https://fr.web.img5.acsta.net/img/cd/90/cd90255ae37ff659dab73bd1c422c9b5.jpg]
-[---- Les 4 Fantastiques ----]
-Timeline 1 : Timeline originelle des 4 Fantastiques
+[---- Timeline des Quatre Fantastiques ----]
 1960 : Les Quatre Fantastiques : Premiers pas [sortie: 2025] [img:https://fr.web.img2.acsta.net/c_310_420/img/ab/6d/ab6d20991bee70ec660039d1199c8bca.jpg]
 [----------------------------]
 2029 : Scène post-générique de Thunderbolts* [sortie: 2025] [img:https://i.redd.it/81fynzrwgfaf1.jpg]
 
 Arc 9 - X-Men
-[------ X-Men ---------------]
-Timeline 1 : Timeline d'origine des X-Men
+[------ Timeline originelle des X-Men ---------------]
 1962 : X-Men : Le Commencement [sortie: 2011] [img:https://fr.web.img4.acsta.net/medias/nmedia/18/83/44/48/19732066.jpg]
 1980 : X-Men Origins: Wolverine [sortie: 2009] [img:https://fr.web.img6.acsta.net/medias/nmedia/18/68/62/70/19085550.jpg]
 2000 : X-Men [sortie: 2000] [img:https://fr.web.img3.acsta.net/medias/nmedia/18/66/09/04/19089552.jpg]
@@ -157,14 +154,17 @@ Timeline 1 : Timeline d'origine des X-Men
 2006 : X-Men : L'Affrontement final [sortie: 2006] [img:https://m.media-amazon.com/images/M/MV5BMThmOWE3OWEtODJmNC00ZDEzLTk4MWUtNzEzM2RiNmJiZmU3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg]
 2013 : Wolverine : Le Combat de l'immortel [sortie: 2013] [img:https://fr.web.img2.acsta.net/pictures/210/059/21005913_20130515100512343.jpg]
 2023 : X-Men: Days of Future Past [sortie: 2014] [img:https://fr.web.img6.acsta.net/pictures/14/03/24/14/35/575642.jpg]
-Timeline 2 : Wolverine est retourné dans le passé
+[----------------------------]
+[------ Nouvelle timeline des X-Men ---------------]
 1983 : X-Men: Apocalypse [sortie: 2016] [img:https://fr.web.img4.acsta.net/c_310_420/pictures/16/04/13/17/27/399447.jpg]
 1993 : X-Men: Dark Phoenix [sortie: 2019] [img:https://fr.web.img4.acsta.net/pictures/19/02/27/14/07/2839812.jpg]
 2016 : Deadpool [sortie: 2016] [img:https://fr.web.img4.acsta.net/pictures/16/01/19/16/49/249124.jpg]
 2018 : Deadpool 2 [sortie: 2018] [img:https://fr.web.img2.acsta.net/c_310_420/pictures/18/04/06/16/26/2317955.jpg]
 2029 : Logan [sortie: 2017] [img:https://m.media-amazon.com/images/M/MV5BM2JjODdkMGMtNmY2YS00OGM2LThiY2YtZGYyNzE4Nzc2ODA0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg]
-Timeline 3 : La TVA vient chercher Deadpool
+[----------------------------]
+[------ Timeline de Deadpool dans la TVA ---------------]
 2024 : Deadpool & Wolverine [sortie: 2024] [img:https://fr.web.img5.acsta.net/img/e4/cd/e4cd101f2e66f4e7818fcf53d05c006a.jpg]
 [----------------------------]
+
 
 

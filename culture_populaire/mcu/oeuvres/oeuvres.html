@@ -82,7 +82,7 @@ ol{list-style:none;margin:0;padding:0}
 <header>
   <h1>Les œuvres du MCU</h1>
   <p>Ici sont répertoriées les différentes œuvres du MCU dans l'ordre chronologique.
-    Pour déterminer le placement, c'est le cœur de l'action de l'œuvre qui fait foi, mais si les oeuvres sont interchangeables j'ai mis l'ordre que je trouve le plus pertinent.
+    Pour déterminer le placement, c'est le cœur de l'action de l'œuvre qui fait foi.
     Les scènes post-génériques peuvent se situer ailleurs dans la chronologie si elles sont distinctes de l'œuvre.</p>
   <div><span id="cnt"></span></div>
 </header>
@@ -111,47 +111,20 @@ function tag(s,name){
 }
 const clean=t=>t.replace(/\s+/g,' ').trim();
 function parse(txt){
-  const out=[],ids={};let br='',tlid='',tlCount=0;
-  const usedTlIds=new Set();
-  txt.split(/\r?\n/).forEach(raw=>{
-    const s=raw.trim();
-    if(/^Timeline\s*\d|^Timeline\s+principale/i.test(s)){
-      const m=s.match(/\[\s*id\s*:\s*([^\]]+?)\s*\]/i);
-      if(m)usedTlIds.add(m[1].trim());
-    }
-  });
+  const out=[],ids={};let br='';
   for(const raw of txt.split(/\r?\n/)){
     const s=raw.trim();
     if(!s||s.startsWith('#'))continue;
     let m;
-    if(/^\[-+\]$/.test(s)){br='';tlid='';continue}
-    if(m=s.match(/^\[-+\s*(.+?)\s*-+\]$/)){br=m[1].replace(/^Timeline (des|de|du)\s+/i,'');tlid='';out.push({k:'br',t:br});continue}
-    if(/^Timeline\s*\d|^Timeline\s+principale/i.test(s)){
-      let rest=s,v;
-      ({rest,val:v}=tag(rest,'id'));
-      let tid;
-      if(v&&v!==true)tid=v;
-      else{do{tid='tl'+(++tlCount)}while(usedTlIds.has(tid))}
-      usedTlIds.add(tid);
-      let born;({rest,val:born}=tag(rest,'née-de'));
-      let vers;({rest,val:vers}=tag(rest,'vers'));
-      let amont;({rest,val:amont}=tag(rest,'amont'));
-      let aval;({rest,val:aval}=tag(rest,'aval'));
-      const label=rest.replace(/^Timeline\s*(\d+|principale)\s*[:\-]?\s*/i,'').trim();
-      tlid=tid;
-      out.push({k:'tl',id:tid,label,br,bornFrom:(born&&born!==true)?born:null,linkTo:(vers&&vers!==true)?vers:null,amont:!!amont,aval:!!aval});
-      continue;
-    }
+    if(/^\[-+\]$/.test(s)){br='';continue}
+    if(m=s.match(/^\[-+\s*(.+?)\s*-+\]$/)){br=m[1];out.push({k:'br',t:br});continue}
     if(!(m=s.match(/^([^:]{1,60}?)\s*:\s*(.*)$/))){out.push({k:'sec',t:s});continue}
     const y=m[1].trim();let body=m[2];
-    const e={k:'e',br,tlid,y};
+    const e={k:'e',br,y};
     let r;
     r=tag(body,'sortie');body=r.rest;if(r.val&&r.val!==true)e.release=parseInt(r.val,10);
     r=tag(body,'img');body=r.rest;if(r.val&&r.val!==true)e.img=r.val;
     r=tag(body,'info');body=r.rest;if(r.val&&r.val!==true)e.info=r.val;
-    r=tag(body,'id');body=r.rest;if(r.val&&r.val!==true)e.sceneId=r.val;
-    r=tag(body,'depuis');body=r.rest;if(r.val&&r.val!==true)e.linkFrom=r.val;
-    r=tag(body,'vers');body=r.rest;if(r.val&&r.val!==true)e.linkTo=r.val;
     e.t=clean(body);
     let h=5381;for(const c of e.y+e.t)h=(h*33+c.charCodeAt(0))>>>0;
     e.id=h.toString(36);ids[e.id]=(ids[e.id]||0)+1;if(ids[e.id]>1)e.id+='-'+ids[e.id];
@@ -180,91 +153,31 @@ function matches(e){
   if(q&&!(e.t+' '+e.br+' '+e.y+' '+(e.release||'')).toLowerCase().includes(q))return false;
   return true;
 }
-function rowHtml(e,leftLabel,leftSub,laned){
+function rowHtml(e,leftLabel){
   const bc=e.br?col[e.br]:(F.order==='story'?`var(--a${(e.secIdx||0)%8})`:'var(--p0)');
   const pic=e.img||(okImg[e.slug]?`images/${e.slug}.jpg`:'');
   const badge=e.br&&F.order==='release'?`<span class="badge" style="--pc:${bc}">${esc(e.br)}</span>`:'';
   // En ordre chronologique, la colonne de gauche affiche déjà l'année de l'histoire : on ne montre
   // ici que l'année de sortie. En ordre de sortie c'est l'inverse (gauche = sortie, ici = histoire).
   const meta=F.order==='story'?(e.release?`Sorti en ${e.release}`:''):(e.y||'');
-  return `<li class="row${laned?' laned':''}" data-rid="${e.id}" style="--pc:${bc};--dc:${bc}"><div class="yr">${leftLabel!==null?esc(leftLabel)+(leftSub?`<small>${esc(leftSub)}</small>`:''):''}</div><div class="rail"><i></i></div>
+  return `<li class="row" data-rid="${e.id}" style="--pc:${bc};--dc:${bc}"><div class="yr">${leftLabel!==null?esc(leftLabel):''}</div><div class="rail"><i></i></div>
 <div class="card">${pic?`<img class="poster" data-pid="${e.id}" src="${esc(pic)}" alt="" loading="lazy">`:''}
 <div class="body">${badge}<span class="t">${esc(e.t)}</span>
 ${meta?`<span class="m">${esc(meta)}</span>`:''}${e.info&&!pic?`<button class="more" type="button" data-pid="${e.id}">ⓘ détails</button>`:''}</div></div></li>`;
 }
-function sagaHtml(br,rows,tls){
-  const used=new Set(rows.map(e=>e.tlid).filter(Boolean));
-  const realTls=tls.filter(t=>used.has(t.id));
-  if(!realTls.length){
-    let prev=null;
-    const body=rows.map(e=>{const first=e.y!==prev;prev=e.y;return rowHtml(e,first?e.y:null)}).join('');
-    return `<li class="brblock" style="--pc:${col[br]}"><span class="bh"><i></i>${esc(br)}</span><ol>${body}</ol></li>`;
-  }
-  const lanes={};realTls.forEach((t,i)=>lanes[t.id]=i%6);
-  const gutter=Math.min(realTls.length,6)*22+14;
-  let prev=null,rowsHtml='';
-  rows.forEach(e=>{const first=e.y!==prev;prev=e.y;rowsHtml+=rowHtml(e,first?e.y:null,null,true)});
-  const sagaId='saga-'+Math.random().toString(36).slice(2,9);
-  pendingLanes.push({id:sagaId,tls:realTls,lanes,rowTlid:Object.fromEntries(rows.map(e=>[e.id,e.tlid]))});
-  return `<li class="saga" style="--pc:${col[br]}"><span class="bh"><i></i>${esc(br)}</span>
-<div class="saga-body" id="${sagaId}" style="--gutter:${gutter}px"><svg class="saga-svg"></svg><div class="lane-labels"></div><ol>${rowsHtml}</ol></div></li>`;
-}
-let pendingLanes=[];
-function laneColor(i){return `var(--l${i%6})`}
-function layoutLanes(){
-  pendingLanes.forEach(({id,tls,lanes,rowTlid})=>{
-    const box=document.getElementById(id);if(!box)return;
-    const svg=box.querySelector('.saga-svg');
-    const boxTop=box.getBoundingClientRect().top;
-    const dotY=rid=>{const row=box.querySelector(`.row[data-rid="${CSS.escape(rid)}"]`);if(!row)return null;const card=row.querySelector('.card');if(!card)return null;const r=card.getBoundingClientRect();return r.top-boxTop+r.height/2};
-    const laneX=li=>14+lanes[li]*22+11;
-    const gutterPx=Math.min(tls.length,6)*22+14;
-    const laneName=t=>{let s=(t.label||'').trim();return s||t.id};
-    let paths='',defs='',labels='';
-    tls.forEach(t=>{
-      const rowIds=Object.keys(rowTlid).filter(rid=>rowTlid[rid]===t.id);
-      if(!rowIds.length)return;
-      const ys=rowIds.map(dotY).filter(y=>y!==null);
-      if(!ys.length)return;
-      const x=laneX(t.id),top=Math.min(...ys),bot=Math.max(...ys),c=laneColor(lanes[t.id]);
-      const gid=id+'-'+t.id;
-      paths+=`<line x1="${x}" y1="${top}" x2="${x}" y2="${bot}" stroke="${c}" stroke-width="2.5"/>`;
-      labels+=`<span class="lane-label" style="right:${gutterPx-(x-8)}px;top:${top-7}px;color:${c}">${esc(laneName(t))}</span>`;
-      const originRid=t.bornFrom?sceneRefs[t.bornFrom]:null;
-      const originY=originRid?dotY(originRid):null;
-      const originLane=originRid&&rowTlid[originRid]!==undefined?lanes[rowTlid[originRid]]:null;
-      if(originY!==null&&originLane!==null){
-        const ox=14+originLane*22+11;
-        paths+=`<path d="M${ox} ${originY} C ${ox} ${(originY+top)/2}, ${x} ${(originY+top)/2}, ${x} ${top}" fill="none" stroke="${c}" stroke-width="2.5"/>`;
-      }else if(t.amont){
-        defs+=`<linearGradient id="${gid}-up" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}" stop-opacity="0"/><stop offset="1" stop-color="${c}" stop-opacity="1"/></linearGradient>`;
-        paths+=`<line x1="${x}" y1="${top-40}" x2="${x}" y2="${top}" stroke="url(#${gid}-up)" stroke-width="2.5" stroke-linecap="round"/>`;
-      }
-      const targetRid=t.linkTo?sceneRefs[t.linkTo]:null;
-      const targetY=targetRid?dotY(targetRid):null;
-      const targetLane=targetRid&&rowTlid[targetRid]!==undefined?lanes[rowTlid[targetRid]]:null;
-      if(targetY!==null&&targetLane!==null){
-        const tx=14+targetLane*22+11;
-        paths+=`<path d="M${x} ${bot} C ${x} ${(bot+targetY)/2}, ${tx} ${(bot+targetY)/2}, ${tx} ${targetY}" fill="none" stroke="${c}" stroke-width="2.5"/>`;
-      }else if(t.aval){
-        defs+=`<linearGradient id="${gid}-down" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}" stop-opacity="1"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></linearGradient>`;
-        paths+=`<line x1="${x}" y1="${bot}" x2="${x}" y2="${bot+40}" stroke="url(#${gid}-down)" stroke-width="2.5" stroke-linecap="round"/>`;
-      }
-      ys.forEach(y=>{paths+=`<circle cx="${x}" cy="${y}" r="4" fill="${c}"/>`});
-    });
-    svg.innerHTML=`<defs>${defs}</defs>${paths}`;
-    const lb=box.querySelector('.lane-labels');if(lb)lb.innerHTML=labels;
-  });
+function sagaHtml(br,rows){
+  let prev=null;
+  const body=rows.map(e=>{const first=e.y!==prev;prev=e.y;return rowHtml(e,first?e.y:null)}).join('');
+  return `<li class="brblock" style="--pc:${col[br]}"><span class="bh"><i></i>${esc(br)}</span><ol>${body}</ol></li>`;
 }
 function renderStory(){
   let prev=null,html='',buf=null;
-  const flush=()=>{if(buf){html+=sagaHtml(buf.br,buf.rows,buf.tls);buf=null}};
+  const flush=()=>{if(buf){html+=sagaHtml(buf.br,buf.rows);buf=null}};
   items.forEach(e=>{
     if(e.k==='sec'){flush();prev=null;html+=`<li class="sec" style="--dc:var(--a${(e.secIdx||0)%8})"><h2>${esc(e.t)}</h2></li>`;return}
     if(e.k==='br'){flush();return}
-    if(e.k==='tl'){if(e.br){if(!buf||buf.br!==e.br)flush();if(!buf)buf={br:e.br,rows:[],tls:[]};buf.tls.push(e)}return}
     if(!matches(e))return;
-    if(e.br){if(!buf||buf.br!==e.br)flush();if(!buf)buf={br:e.br,rows:[],tls:[]};buf.rows.push(e)}
+    if(e.br){if(!buf||buf.br!==e.br)flush();if(!buf)buf={br:e.br,rows:[]};buf.rows.push(e)}
     else{flush();const first=e.y!==prev;prev=e.y;html+=rowHtml(e,first?e.y:null)}
   });
   flush();
@@ -285,11 +198,9 @@ function renderRelease(){
   return html;
 }
 function render(){
-  pendingLanes=[];
   $('cnt').textContent=`${ents.filter(matches).length} œuvre(s)`;
   const html=F.order==='story'?renderStory():renderRelease();
   $('tl').innerHTML=html||'<li class="msg">Aucune œuvre ne correspond à ces filtres.</li>';
-  requestAnimationFrame(layoutLanes);
 }
 function place(t){const P=$('pop'),r=t.getBoundingClientRect(),w=P.offsetWidth,h=P.offsetHeight;
   let x=r.right+12;if(x+w>innerWidth-8)x=r.left-w-12;
