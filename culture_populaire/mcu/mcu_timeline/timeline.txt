@@ -209,8 +209,7 @@ Civil War et conséquences
 
 X-Men
 
-[---- Timeline des X-Men  ------------------------------------------------------------------------------]
-Timeline 1 (Timeline d'origine des X-Men)
+[---- Timeline d'origine des X-Men -----]
 	-3600 : En Sabah Nur se fait ensevelir – X-Men Apocalypse (00:58→07:19)
 	1845 : La jeunesse de Logan – Wolverine 1 (00:38→04:28)
 	1860 : Logan et son frère dans la guerre de sécession - Wolverine 1 (04:28→04:50)
@@ -231,7 +230,8 @@ Timeline 1 (Timeline d'origine des X-Men)
 	2013 : Wolverine 2 (05:05→01:09:31)+(01:11:38→02:07:44)
 	2015 : Wolverine retrouve Charles Xavier et Magneto – Wolverine 2 (02:09:17→02:11:19)
 	2023 : X-Men Days of Future Past (00:56→02:42)+(03:33→02:11:42)
-Timeline 2 (Wolverine remonte dans le temps)
+[--------------------------------------------]
+[---- Wolverine retourne dans le passé -----]
 	1973 (Janvier) : X-Men Days of Future Past (18:47→ 02:13:59)+(02:18:17→02:19:19)
 	1975 : Jean Grey provoque un accident – X-Men Dark Phoenix (01:16→06:53)
 	1983 :  X-Men Apocalypse (08:19→02:14:05)+(02:22:35→02:23:45)
@@ -241,9 +241,10 @@ Timeline 2 (Wolverine remonte dans le temps)
 		+(01:04:00→01:40:58)+(01:46:59→01:47:30)
 	2018 : Deadpool 2 avant Cable (02:31→17:42)+(19:11→24:13)+(0:36→02:31)+(24:13→31:00)
 	??? : Le futur de Cable (31:00→31:59)+(01:29:52→01:30:23)
-Timeline 3 (Cable retourne dans le passé)
+[--------------------------------------------]
+[---- Câble retourne dans le passé -----]
 	2018 : Fin de Deadpool 2 (32:00→02:02:32)+(02:04:22→02:04:52)+(02:05:10→02:07:48)+(02:13:24→02:13:50)	
-[-------------------------------------------------------------------------------------------------------------------]
+[--------------------------------------------]
 
 Thanos
 
