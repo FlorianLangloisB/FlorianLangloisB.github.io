@@ -1,0 +1,170 @@
+# ============================================================================
+# Légende du format (les lignes commençant par # sont ignorées)
+# ============================================================================
+#
+# Ligne de titre de section (sans ":" ni "[----]") :
+#   Phase 1
+#   -> affiche un grand titre de section (visible seulement en ordre chronologique).
+#
+# Ligne d'œuvre :
+#   Année(s) de l'histoire : Titre [sortie: AAAA] [img: chemin] [info: texte]
+#   - "Année(s) de l'histoire" : ce que tu veux, ex. "2010", "2018-2023", "???", "-3000"
+#   - [sortie: AAAA]  année de sortie réelle du film/de la série (utilisée par le tri "Ordre de sortie")
+#   - [img: chemin]    optionnel, image pour cette entrée précise (voir "Images" ci-dessous)
+#   - [info: texte]    optionnel, note affichée dans la popup au survol
+#
+#   Une scène post-générique qui se déroule à un autre moment de l'histoire n'est pas un
+#   "détail" à part : c'est juste une ligne d'œuvre de plus, avec sa propre année et,
+#   si tu veux, sa propre image. Exemple : la scène post-générique de Captain Marvel se
+#   passe en 2018 (contrairement au film, en 1995) -> deux lignes séparées (voir plus bas).
+#
+# Images :
+#   Sans [img:], la page cherche automatiquement un fichier nommé d'après le titre,
+#   dans un dossier "images/" à côté de oeuvres.html : les espaces et accents sont
+#   retirés et remplacés par des tirets, en minuscules. Ex. pour "Iron Man 2" ->
+#   images/iron-man-2.jpg
+#   Avec [img: chemin-ou-url], tu choisis toi-même le fichier (utile si le nom
+#   automatique ne convient pas, si plusieurs entrées doivent partager la même image,
+#   ou si l'image est hébergée ailleurs). Ex. [img: images/captain-marvel-postcredit.jpg]
+#   ou [img: https://exemple.com/affiche.jpg]
+#
+# Groupe en saga (optionnel, regroupe visuellement + colore les œuvres suivantes) :
+#   [---- Nom de la saga ----]
+#   ... œuvres de cette saga ...
+#   [---]   (referme le groupe)
+#
+# Timeline alternative à l'intérieur d'une saga (optionnel, pour gérer des branches,
+# ex. plusieurs continuités X-Men, Spider-Verse, What If...?) :
+#   Timeline 1 [id: xmen-fox] [née-de: <id d'une œuvre>] [vers: <id d'une œuvre>] : Description
+#   -> toutes les œuvres suivantes (jusqu'à la prochaine ligne "Timeline"/le prochain "[---]")
+#      appartiennent à cette branche, dessinée comme un rail séparé.
+#   [amont] / [aval] à la place de [née-de]/[vers] : la branche part/part vers l'inconnu
+#      (trait qui s'estompe, sans point d'origine ou d'arrivée précis).
+#   [id: xxx] sur une ligne d'œuvre : lui donne un identifiant, utilisable ensuite comme
+#      cible de [née-de:]/[vers:] d'une timeline.
+#
+# ============================================================================
+
+Arc 1 - Le projet Avengers
+
+1945 : Captain America: First Avenger [sortie: 2011] [img:https://fr.web.img4.acsta.net/medias/nmedia/18/84/69/36/19774937.jpg]
+1946 : Agent Carter [sortie: 2013] [img:https://static.wikia.nocookie.net/marvelcinematicuniverse/images/1/16/Agent_Carter_Disney_Plus.jpg]
+1995 : Captain Marvel [sortie: 2019] [img:https://fr.web.img2.acsta.net/pictures/18/12/03/08/53/5968896.jpg]
+2008 : Iron Man [sortie: 2008] [img:https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_FMjpg_UX1000_.jpg]
+2011 : L'Incroyable Hulk [sortie: 2008] [img:https://fr.web.img2.acsta.net/medias/nmedia/18/65/69/21/18949753.jpg]
+2011 : Iron Man 2 [sortie: 2010] [img:https://fr.web.img6.acsta.net/c_310_420/medias/nmedia/18/70/45/28/19408942.jpg]
+2011 : Une drôle d'histoire sur la route du marteau de Thor [sortie: 2011] [img:https://static.wikia.nocookie.net/marvelcinematicuniverse/images/e/e5/Marvel_One-Shot_-_A_Funny_Thing_Happened_on_the_Way_to_Thors_Hammer_D%2B_Cover_Poster.jpg]
+2011 : Thor [sortie: 2011] [img:https://fr.web.img3.acsta.net/medias/nmedia/18/77/96/35/19701393.jpg]
+2011 : Le consultant [sortie: 2011] [img:https://www.chroniquedisney.fr/imgFiliale/marvel/2011-consultant-00-big.jpg]
+2011 : Scène post-générique de l'Incroyable Hulk [sortie: 2008] [img:https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKCTgA5h2XXWETjncPhkuNOIBfjNXf59bVY6LndYMuijRXPPh7x1vAQh4&s=10]
+2011 : Scène post-générique de Captain America: First Avenger [sortie: 2011] [img:https://i.ytimg.com/vi/gZa82Xz1nys/maxresdefault.jpg]
+2012 : Avengers [sortie: 2012] [img:https://fr.web.img3.acsta.net/medias/nmedia/18/85/31/58/20042068.jpg]
+2012 : Article 47 [sortie: 2012] [img:https://m.media-amazon.com/images/M/MV5BMTI2NDI2MzgtNTMzNi00MmEyLWE0ZDYtZmQ2NjJjMjUyYzMzXkEyXkFqcGc@._V1_.jpg]
+
+Arc 2 - L'Ère d'Ultron
+
+??? : Werewolf by Night [sortie: 2022] [img:https://fr.web.img3.acsta.net/pictures/22/09/12/09/58/5811789.jpg]
+2012 : Iron Man 3 [sortie: 2013] [img:https://fr.web.img3.acsta.net/c_310_420/medias/nmedia/18/91/08/37/20508296.jpg]
+2013 : Longue vie au Roi [sortie: 2014] [img:https://static.wikia.nocookie.net/marvelcinematicuniverse/images/a/a6/Marvel_One-Shot_-_All_Hail_The_King_D%2B_Cover_Poster.jpg]
+2013 : Thor: Le monde des Ténèbres [sortie: 2013] [img:https://thumb.wikimedia.org/wikipedia/en/thumb/7/7f/Thor_The_Dark_World_poster.jpg/250px-Thor_The_Dark_World_poster.jpg]
+2014 : Les Gardiens de la Galaxie vol. 1 [sortie: 2014] [img:https://cinedweller.com/wp-content/uploads/2023/04/les-gardiens-de-la-galaxie-volume-1-affiche.jpg.webp]
+2014 : Je s'appelle Groot S1E01 [sortie: 2022] [img:https://static.wikia.nocookie.net/marvelcinematicuniverse/images/8/81/Groot%27s_First_Steps_Poster.jpg/]
+2014 : Les Gardiens de la Galaxie vol. 2 [sortie: 2017] [img:https://fr.web.img2.acsta.net/pictures/17/03/01/11/10/438835.jpg]
+2014 : Je s'appelle Groot S1E02 à S1E05 [sortie: 2022] [img:https://static.wikia.nocookie.net/marvelcinematicuniverse/images/8/88/I_Am_Groot_Official_Poster.jpg]
+2014 : Je s'appelle Groot S2 [sortie: 2023] [img:https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/9f/I_Am_Groot_Season_Two_-_Official_Poster.jpg/revision/latest?cb=20230907052219]
+2014 : Captain America : Le Soldat de l'hiver [sortie: 2014] [img:https://fr.web.img6.acsta.net/pictures/14/01/31/17/06/486036.jpg]
+2015 : Avengers : L'Ère d'Ultron [sortie: 2015] [img:https://fr.web.img4.acsta.net/pictures/15/02/24/18/29/161927.jpg]
+
+Arc 3 - Civil War
+
+2015 : Ant-Man [sortie: 2015] [img:https://fr.web.img4.acsta.net/pictures/15/05/06/16/05/305731.jpg]
+2016 : Captain America: Civil War [sortie: 2016] [img:https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_FMjpg_UX1000_.jpg]
+2016 : Black Widow [sortie: 2021] [img:https://fr.web.img2.acsta.net/pictures/21/06/30/13/37/5245550.jpg]
+2016 : Black Panther [sortie: 2018] [img:https://fr.web.img2.acsta.net/pictures/17/10/16/15/40/0883250.jpg]
+2016 : Spider-Man : Homecoming [sortie: 2017] [img:https://fr.web.img2.acsta.net/pictures/17/05/30/13/13/145510.jpg]
+
+Arc 4 - Thanos
+
+2016 : Doctor Strange [sortie: 2016] [img:https://fr.web.img2.acsta.net/pictures/16/09/09/08/57/518191.jpg]
+2017 : Thor : Ragnarok [sortie: 2017] [img:https://m.media-amazon.com/images/M/MV5BMjMyNDkzMzI1OF5BMl5BanBnXkFtZTgwODcxODg5MjI@._V1_.jpg]
+2018 : Scène post-générique de Avengers : L'ère d'Ultron [img:https://i.ytimg.com/vi/4d8VTAbotXY/maxresdefault.jpg]
+2018 : Ant-Man et la Guêpe [sortie: 2018] [img:https://static.wikia.nocookie.net/marvelcinematicuniverse/images/0/0d/Ant-Man_and_the_Wasp_Complete_Poster.jpg]
+2018 : Avengers : Infinity War [sortie: 2018] [img:https://static.wikia.nocookie.net/marvelstudios/images/f/ff/DYabYAYVQAA4Du9.jpg/revision/latest?cb=20220324180152&path-prefix=fr]
+2018 : Scènes post-générique de Ant-Man et la Guêpe [sortie: 2018] [img:https://i.ytimg.com/vi/vjBh2i6RLpQ/maxresdefault.jpg]
+2018 : Scène post-générique de Captain Marvel [sortie: 2019] [img:https://images.thedirect.com/media/photos/captain-marvel-post-credits-2.jpg]
+2023 : Avengers : Endgame [sortie: 2019] [img:https://fr.web.img2.acsta.net/pictures/19/04/04/09/04/0472053.jpg]
+
+Arc 5 - Conséquences d'Endgame
+
+[---- Timeline de Loki ----]
+Timeline 1 : Loki de 2012 a récupéré le Tesseract
+Hors du temps : Loki S1 [sortie: 2021] [img:https://static.wikia.nocookie.net/marvelstudios/images/6/6f/FD222C89-65F7-40F2-8A9B-AE8966E3BD95.jpeg/revision/latest?cb=20210512161408&path-prefix=fr]
+Hors du temps : Loki S2 [sortie: 2023] [img:https://fr.web.img6.acsta.net/pictures/23/07/31/16/30/3834309.jpg]
+[--------------------------]
+
+2023 : WandaVision [sortie: 2021] [img:https://fr.web.img4.acsta.net/pictures/21/02/01/16/54/3730739.jpg]
+2023 : Les Éternels [sortie: 2021] [img:https://fr.web.img6.acsta.net/pictures/21/10/13/10/33/5985249.jpg]
+2024 : Shang-Chi [sortie: 2021] [img:https://fr.web.img3.acsta.net/pictures/21/08/25/11/54/3128925.jpg]
+2024 : Falcon et le Soldat de l'hiver [sortie: 2021] [img:https://fr.web.img6.acsta.net/pictures/21/02/08/11/16/4714705.jpg]
+2024 : Thor: Love and Thunder [sortie: 2022] [img:https://static.wikia.nocookie.net/marvelstudios/images/7/72/12866433-D275-4CA1-9162-3B8B5E109E73.jpeg/revision/latest?cb=20220524095306&path-prefix=fr]
+2024 : Moon Knight [sortie: 2022] [img:https://m.media-amazon.com/images/M/MV5BNDAzNmYwZjgtNDc3YS00ZDMyLTk0MjktMTg4MGNmNGU3MjlhXkEyXkFqcGc@._V1_.jpg]
+
+Arc 6 - Multiverse of Madness
+
+2024 : Spider-Man : Far From Home [sortie: 2019] [img:https://static.wikia.nocookie.net/marvelstudios/images/5/5e/D8xPkbSXoAAR7Z1.jpg/revision/latest?cb=20220422092422&path-prefix=fr]
+[---- Spider-Man (Pré MCU) ----]
+Timeline 1 : Tobey Maguire
+2002 : Spider-Man [sortie: 2002] [img:https://fr.web.img3.acsta.net/c_310_420/medias/nmedia/00/00/00/33/spiderman.jpg]
+2004 : Spider-Man 2 [sortie: 2004] [img:https://fr.web.img4.acsta.net/medias/nmedia/18/35/16/02/18380826.jpg]
+2005 : Spider-Man 3 [sortie: 2007] [img:https://fr.web.img3.acsta.net/medias/nmedia/18/35/62/65/18754165.jpg]
+Timeline 2 : Andrew Garfield
+2012 : The Amazing Spider-Man [sortie: 2012] [img:https://fr.web.img6.acsta.net/medias/nmedia/18/83/19/35/20158079.jpg]
+2014 : The Amazing Spider-Man [sortie: 2014] [img:https://fr.web.img6.acsta.net/pictures/14/01/08/18/54/426954.jpg]
+[--------------------]
+2024‎ : Spider-Man : No Way Home [sortie: 2021] [img:https://fr.web.img4.acsta.net/pictures/21/11/16/10/01/4860598.jpg]
+2024‎ : Scène post-générique de WandaVision [sortie: 2021] [img:https://i.ytimg.com/vi/G4EwlpxJAaQ/maxresdefault.jpg]
+2024‎ : Doctor Strange in the Multivers of Madness [sortie: 2022] [img:https://fr.web.img5.acsta.net/pictures/22/04/08/10/30/1779137.jpg]
+
+Arc 7 - Nouveaux héros
+2024‎ : Hawkeye [sortie: 2021] [img:https://m.media-amazon.com/images/M/MV5BOGU5ZDBlOTAtOTZmYS00MWE0LTg0NzktNDcxZGJhN2FhZmM2XkEyXkFqcGc@._V1_.jpg]
+2025 : Black Panther: Wakanda Forever [sortie: 2022] [img:https://fr.web.img2.acsta.net/pictures/22/10/17/10/28/5232325.jpg]
+2025 : Ant-Man et la Guêpe : Quantumania [sortie: 2023] [img:https://fr.web.img6.acsta.net/pictures/23/01/10/11/56/4907182.jpg]
+2025 : She-Hulk : Avocate [sortie: 2022] [img:https://static.wikia.nocookie.net/marvelstudios/images/a/ad/B744F2D8-764C-4772-A6E0-849DBAE0EB39.jpeg/revision/latest?cb=20220724095602&path-prefix=fr]
+2025 : Miss Marvel [sortie: 2022] [img:https://fr.web.img5.acsta.net/pictures/22/04/20/09/46/0733661.jpg]
+2025 : Secret Invasion [sortie: 2023] [img:https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYK7EfAtLvUPyQUfddSjVY05LLXsDZnRX0dY_ZI_oy8w&s=10]
+2025 : The Marvels [sortie: 2023] [img:https://lumiere-a.akamaihd.net/v1/images/image_167d5a00.jpeg]
+
+Arc 8 - Nouvelles équipes
+2025 : Les Gardiens de la Galaxie : Joyeuses Fêtes [sortie: 2022] [img:https://fr.web.img2.acsta.net/pictures/22/11/14/17/17/2637256.jpg]
+2026 : Les Gardiens de la Galaxie Vol. 3 [sortie: 2023] [img:https://fr.web.img5.acsta.net/pictures/23/02/13/11/43/2783447.jpg]
+2026 : Agatha All Along [sortie: 2024] [img:https://m.media-amazon.com/images/M/MV5BMDcyZTNjOTEtNzc5Yy00Y2UzLThkMWYtNTY4YmM4OWI5OTMzXkEyXkFqcGc@._V1_.jpg]
+2027 : Captain America: Brave New World [sortie: 2025] [img:https://thumb.wikimedia.org/wikipedia/en/thumb/a/a4/Captain_America_Brave_New_World_poster.jpg/250px-Captain_America_Brave_New_World_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail]
+2027 :Thunderbolts* [sortie: 2025] [img:https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIwji34UCZnRAs5INV1GT6AHQwVt7kW7C2-DxyztxTzQdnEglik-qtdyw&s=10]
+2028 : Spider-Man: Brand New Day [sortie: 2026] [img:https://fr.web.img5.acsta.net/img/cd/90/cd90255ae37ff659dab73bd1c422c9b5.jpg]
+[---- Les 4 Fantastiques ----]
+Timeline 1 : Timeline originelle des 4 Fantastiques
+1960 : Les Quatre Fantastiques : Premiers pas [sortie: 2025] [img:https://fr.web.img2.acsta.net/c_310_420/img/ab/6d/ab6d20991bee70ec660039d1199c8bca.jpg]
+[----------------------------]
+2029 : Scène post-générique de Thunderbolts* [sortie: 2025] [img:https://i.redd.it/81fynzrwgfaf1.jpg]
+
+Arc 9 - X-Men
+[------ X-Men ---------------]
+Timeline 1 : Timeline d'origine des X-Men
+1962 : X-Men : Le Commencement [sortie: 2011] [img:https://fr.web.img4.acsta.net/medias/nmedia/18/83/44/48/19732066.jpg]
+1980 : X-Men Origins: Wolverine [sortie: 2009] [img:https://fr.web.img6.acsta.net/medias/nmedia/18/68/62/70/19085550.jpg]
+2000 : X-Men [sortie: 2000] [img:https://fr.web.img3.acsta.net/medias/nmedia/18/66/09/04/19089552.jpg]
+2000 : X-Men 2 [sortie: 2003] [img:https://fr.web.img5.acsta.net/medias/nmedia/18/35/06/08/affiche.jpg]
+2006 : X-Men : L'Affrontement final [sortie: 2006] [img:https://m.media-amazon.com/images/M/MV5BMThmOWE3OWEtODJmNC00ZDEzLTk4MWUtNzEzM2RiNmJiZmU3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg]
+2013 : Wolverine : Le Combat de l'immortel [sortie: 2013] [img:https://fr.web.img2.acsta.net/pictures/210/059/21005913_20130515100512343.jpg]
+2023 : X-Men: Days of Future Past [sortie: 2014] [img:https://fr.web.img6.acsta.net/pictures/14/03/24/14/35/575642.jpg]
+Timeline 2 : Wolverine est retourné dans le passé
+1983 : X-Men: Apocalypse [sortie: 2016] [img:https://fr.web.img4.acsta.net/c_310_420/pictures/16/04/13/17/27/399447.jpg]
+1993 : X-Men: Dark Phoenix [sortie: 2019] [img:https://fr.web.img4.acsta.net/pictures/19/02/27/14/07/2839812.jpg]
+2016 : Deadpool [sortie: 2016] [img:https://fr.web.img4.acsta.net/pictures/16/01/19/16/49/249124.jpg]
+2018 : Deadpool 2 [sortie: 2018] [img:https://fr.web.img2.acsta.net/c_310_420/pictures/18/04/06/16/26/2317955.jpg]
+2029 : Logan [sortie: 2017] [img:https://m.media-amazon.com/images/M/MV5BM2JjODdkMGMtNmY2YS00OGM2LThiY2YtZGYyNzE4Nzc2ODA0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg]
+Timeline 3 : La TVA vient chercher Deadpool
+2024 : Deadpool & Wolverine [sortie: 2024] [img:https://fr.web.img5.acsta.net/img/e4/cd/e4cd101f2e66f4e7818fcf53d05c006a.jpg]
+[----------------------------]
+
+
