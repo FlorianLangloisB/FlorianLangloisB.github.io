@@ -9,49 +9,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#15172e;--panel:#1f2244;--line:#3a3e72;--tx:#eceaf6;--mut:#9fa1c9;
---p0:#9a86ff;--p1:#f2b441;--p2:#ef6f5e;--p3:#3cc9b4;--p4:#5b9bff;--p5:#f27fb8;--a0:#f2b441;--a1:#ef6f5e;--a2:#9a86ff;--a3:#3cc9b4;--a4:#5b9bff;--a5:#f27fb8;--a6:#a8d95b;--a7:#ffa25c;
---l0:#38bdf8;--l1:#6366f1;--l2:#22d3ee;--l3:#4f46e5;--l4:#0ea5e9;--l5:#818cf8}
+--p0:#9a86ff;--p1:#f2b441;--p2:#ef6f5e;--p3:#3cc9b4;--p4:#5b9bff;--p5:#f27fb8;
+--a0:#9a86ff;--a1:#f2b441;--a2:#ef6f5e;--a3:#3cc9b4;--a4:#5b9bff;--a5:#f27fb8;--a6:#a8d95b;--a7:#ffa25c}
 *{box-sizing:border-box}
 body{margin:0;color:var(--tx);font-family:'Bricolage Grotesque',system-ui,sans-serif;line-height:1.4;
 background:radial-gradient(900px 500px at 85% -5%,#3a3f9a55,transparent),radial-gradient(700px 400px at 0% 30%,#7a3a8a33,transparent),var(--bg);min-height:100vh}
 header{max-width:900px;margin:0 auto;padding:4rem 1.25rem 1.5rem}
-h1{margin:0;font-size:clamp(2.8rem,10vw,6.5rem);line-height:.92;font-weight:800;letter-spacing:-.035em}
+h1{margin:0;font-size:clamp(2.4rem,8vw,5rem);line-height:.95;font-weight:800;letter-spacing:-.035em}
 header p{color:var(--mut);max-width:52rem;margin:1.1rem 0 1.6rem;font-size:1.05rem;line-height:1.65}
-.prog{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
 #cnt{font-weight:600}
 .tools{position:sticky;top:0;z-index:5;background:rgba(21,23,46,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .tools>div{max-width:900px;margin:0 auto;padding:.6rem 1.25rem;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
-/* Desktop : pas de tiroir repliable, tout est visible directement. display:contents rend la div
-   "transparente" en layout : ses enfants (les deux menus, les puces) redeviennent des éléments flex
-   directs de .tools>div, au même niveau que la recherche, sur une vraie rangée qui s'enroule proprement. */
-.filters-toggle{display:none;cursor:pointer;font:inherit;font-size:.9rem;font-weight:600;color:var(--tx);background:transparent;list-style:none;border:1px solid var(--line);border-radius:99px;padding:.3rem .9rem;align-items:center;gap:.4rem;user-select:none}
-.filters-toggle::before{content:"▸";font-size:.75em;transition:transform .15s}
-.filters-toggle[aria-expanded=true]::before{transform:rotate(90deg)}
-.filters-body{display:contents}
-@media (max-width:640px){
-  /* Sur mobile, un vrai tiroir replié par défaut derrière le bouton "Filtres". */
-  .filters-toggle{display:inline-flex}
-  .filters-body{display:flex;flex-direction:column;align-items:stretch;gap:.5rem;width:100%;margin-top:.5rem}
-  .filters-body:not(.open){display:none}
-}
 input[type=search],select{font:inherit;color:var(--tx);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:.45rem .7rem;min-width:0;max-width:100%}
 input[type=search]{flex:1 1 11rem}
-#brs{display:flex;flex-wrap:wrap;gap:.4rem;width:100%}
-.chip{font:inherit;font-size:.9rem;color:var(--tx);background:transparent;border:1px solid var(--line);border-radius:99px;padding:.25rem .8rem;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
-.chip[aria-pressed=true]{background:var(--tx);color:var(--bg);border-color:var(--tx)}
-.chip .d{width:.6rem;height:.6rem;border-radius:50%;background:var(--pc)}
 main{max-width:900px;margin:0 auto;padding:1rem 1.25rem 5rem;position:relative}
 ol{list-style:none;margin:0;padding:0}
 .sec h2{margin:3.2rem 0 1rem;font-size:clamp(1.6rem,5vw,2.6rem);font-weight:800;letter-spacing:-.025em;line-height:1.05;padding-bottom:.5rem;border-bottom:3px solid var(--dc)}
-.br{display:grid;grid-template-columns:clamp(4.2rem,15vw,8rem) 1.5rem 1fr;gap:0 1rem;margin:.6rem 0 .3rem}
-.br span{grid-column:3;color:var(--pc);font-weight:600}
 .row{display:grid;grid-template-columns:clamp(4.2rem,15vw,8rem) 1.5rem 1fr;gap:0 1rem}
 .yr{padding-top:.5rem;text-align:right;font-weight:800;font-size:clamp(1.05rem,3.6vw,1.8rem);letter-spacing:-.02em;line-height:1.1;overflow-wrap:anywhere}
-.yr small{display:block;font-size:.7rem;font-weight:400;color:var(--mut);letter-spacing:0}
 .rail{position:relative}
 .rail::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--line);transform:translateX(-50%)}
 .rail i{position:absolute;left:50%;top:1.2rem;width:.9rem;height:.9rem;border-radius:50%;border:2px solid var(--dc);background:var(--dc);box-shadow:0 0 0 3px var(--bg);transform:translate(-50%,-50%)}
-.row.laned .rail i{display:none}
 .card{position:relative;display:flex;gap:.8rem;align-items:flex-start;padding:.65rem 1rem;margin-bottom:.45rem;background:var(--panel);border-radius:10px;border-left:4px solid var(--pc)}
 .card:hover{background:#262a55}
 .body{display:flex;flex-direction:column;gap:.15rem;min-width:0}
@@ -59,72 +37,61 @@ ol{list-style:none;margin:0;padding:0}
 .w{font-size:.85rem;font-weight:600;color:var(--pc)}
 .poster,.more{cursor:zoom-in}
 .more{color:var(--pc);font-size:.82rem;background:none;border:0;padding:0;font-family:inherit}
-#pop{position:fixed;z-index:20;width:min(580px,calc(100vw - 16px));background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 40px #000a;padding:.6rem;pointer-events:none}
+#pop{position:fixed;z-index:20;width:min(280px,calc(100vw - 16px));background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 40px #000a;padding:.6rem;pointer-events:none}
 #pop[hidden]{display:none}
-#pop img{display:block;width:100%;height:auto;max-height:80vh;object-fit:contain;border-radius:8px}
+#pop img{display:block;width:100%;height:auto;max-height:40vh;object-fit:contain;border-radius:8px}
 #pop b{display:block;margin:.6rem .2rem .1rem;font-size:1.05rem}
 #pop small{display:block;margin:0 .2rem;color:var(--pc)}
 #pop p{margin:.5rem .2rem .2rem;line-height:1.45;white-space:pre-line}
 .poster{width:112px;height:auto;border-radius:8px;flex:none;background:var(--bg);box-shadow:0 2px 10px #0006}
 .m{font-size:.82rem;color:var(--mut)}
+.ts{font-size:.82rem;color:var(--mut);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
 .brblock{margin:.3rem 0 1.1rem;padding-left:1rem;border-left:3px solid var(--pc)}
 .brblock .bh{display:inline-flex;align-items:center;gap:.45rem;font-weight:700;font-size:.82rem;color:var(--pc);letter-spacing:.02em;margin:.4rem 0 .6rem;padding:.2rem .7rem;border:1px solid var(--pc);border-radius:99px}
 .brblock .bh i{width:.5rem;height:.5rem;border-radius:50%;background:var(--pc);flex:none}
 .brblock .row .card{border-left-width:3px}
-.saga{margin:.3rem 0 1.1rem}
-.saga>.bh{display:inline-flex;align-items:center;gap:.45rem;font-weight:700;font-size:.82rem;color:var(--pc);letter-spacing:.02em;margin:.4rem 0 .6rem;padding:.2rem .7rem;border:1px solid var(--pc);border-radius:99px}
-.saga>.bh i{width:.5rem;height:.5rem;border-radius:50%;background:var(--pc);flex:none}
-.saga-body{position:relative}
-.saga-body>ol{margin-left:var(--gutter,0px)}
-.saga-svg{position:absolute;left:0;top:0;width:var(--gutter,0px);height:100%;overflow:visible;pointer-events:none}
-.saga-body .row .card{border-left-width:3px}
-.lane-labels{position:absolute;left:0;top:0;width:var(--gutter,0px);height:100%;pointer-events:none;overflow:visible}
-.lane-label{position:absolute;font-size:.68rem;font-weight:700;letter-spacing:.01em;white-space:nowrap;line-height:1;opacity:.9}
-.lk{font:inherit;font-size:.78rem;color:var(--pc);background:transparent;border:1px solid var(--pc);border-radius:99px;padding:.05rem .55rem;cursor:pointer;margin-inline-start:.4rem}
-.lk:hover{background:var(--pc);color:var(--bg)}
-.row.flash .card{outline:2px solid var(--pc);outline-offset:2px}
-.ts{font-size:.82rem;color:var(--mut);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.badge{display:inline-block;font-size:.72rem;font-weight:700;color:var(--pc);border:1px solid var(--pc);border-radius:99px;padding:.05rem .55rem;margin-inline-end:.4rem}
 .msg{color:var(--mut);padding:2rem 0}
-@media (max-width:520px){.row,.br{gap:0 .6rem}.poster{width:76px}}
+@media (max-width:520px){.row{gap:0 .6rem}.poster{width:76px}}
 </style>
 </head>
 <body>
 <header>
   <h1>Chronologie du MCU</h1>
-  <p>Sur cette page j'ai essayé de trier toutes les scènes du MCU dans l'ordre chronologique.
-    J'insère les autres timelines au moment où elles interagissent avec la timeline principale.
-    Par exemple la timeline des X-Men intervient en 2018 car Deadpool vient rencontrer Happy Hogan à ce moment-là.
-    En survolant chaque image, cela l'agrandit et indique également comment la date a été obtenue.</p>
-  <div class="prog"><span id="cnt"></span></div>
+  <p>Sur cette page, toutes les scènes du MCU triées dans l'ordre chronologique de l'histoire.
+    En survolant une image (ou en tapant dessus), elle s'agrandit et affiche le détail disponible.</p>
+  <div><span id="cnt"></span></div>
 </header>
 <div class="tools"><div>
-  <input type="search" id="q" placeholder="Rechercher un film, une série, une année" aria-label="Rechercher">
-  <button type="button" class="filters-toggle" id="filtersToggle" aria-expanded="false" aria-controls="filtersBody">Filtres</button>
-  <div class="filters-body" id="filtersBody">
-    <select id="period" aria-label="Aller à une période"><option value="all">Aller à une période…</option></select>
-    <select id="cm" aria-label="Couleurs"><option value="mix">Couleurs : arc + timeline</option><option value="arc">Couleurs : par arc</option><option value="tl">Couleurs : par timeline</option></select>
-    <div id="brs"></div>
-  </div>
+  <select id="order" aria-label="Ordre d'affichage">
+    <option value="story">Ordre chronologique (histoire)</option>
+    <option value="release">Ordre de sortie</option>
+  </select>
+  <select id="arc" aria-label="Filtrer par arc"><option value="all">Tous les arcs</option></select>
+  <input type="search" id="q" placeholder="Rechercher une scène, une série" aria-label="Rechercher">
 </div></div>
 <div id="pop" hidden></div>
 <main><ol id="tl"><li class="msg">Chargement…</li></ol></main>
 
 <script>
-// PARSE START
+// ============ PARSE ============
+// Voir timeline.txt pour la légende complète du format (en commentaires en tête de fichier).
 const TS=/(\[c\])?\s*\(\s*(\d+(?:\s*:\s*\d+)+)\s*→\s*(\d+(?:\s*:\s*\d+)+)\s*\)(\s*\[audio\])?/g;
 const secs=t=>t.replace(/\s/g,'').split(':').reduce((a,b)=>a*60+ +b,0);
-const clean=t=>t.replace(/\s*\+\s*/g,' ').replace(/\(\s*\)/g,'').replace(/→/g,'').replace(/\s+/g,' ').replace(/[\s\u2013-]+$/,'').trim();
+const clean=t=>t.replace(/\s*\+\s*/g,' ').replace(/\(\s*\)/g,'').replace(/→/g,'').replace(/\s+/g,' ').replace(/[\s–-]+$/,'').trim();
 function grab(e,s){
   const rest=s.replace(TS,(_,c,a,b)=>{e.ts.push([a.replace(/\s/g,''),b.replace(/\s/g,''),c?'[c] ':'']);return ' '});
   e.dur=e.ts.reduce((n,[a,b])=>n+Math.max(0,secs(b)-secs(a)),0)/60;return rest;
 }
 const EP=/[ée]pisode\s*\d+/i;
+// Sépare un titre "Série – Épisode N – Titre de la scène" (ou "Titre de la scène – Série") en
+// e.w (contexte, affiché petit) et e.s (titre principal, affiché en gros). Voir la légende dans
+// timeline.txt pour des exemples.
 function split(e){
   const p=e.t.split(/\s[–-]\s/);
   if(p.length>1){const R=p.pop(),L=p.join(' – ');if(EP.test(L)&&!EP.test(R)){e.w=L;e.s=R}else{e.w=R;e.s=L}}
   else{const j=e.t.match(/^(.*?)\s+(jusqu.*)$/i);if(j){e.w=j[1];e.s=j[2]}else{e.w=e.t;e.s=''}}
 }
-// Retire une balise [mot: valeur] ou [mot] de s et renvoie {rest, val} (val=null si absente, true si sans valeur)
 function tag(s,name){
   const re=new RegExp('\\[\\s*'+name+'\\s*(?::\\s*([^\\]]+?)\\s*)?\\]','i');
   const m=s.match(re);
@@ -132,53 +99,22 @@ function tag(s,name){
   return{rest:s.replace(re,''),val:m[1]!==undefined?m[1].trim():true};
 }
 function parse(txt){
-  const out=[],ids={};let br='',sub='',tlid='',tlCount=0,cur=null,blank=0;
-  // Pré-scan : tous les [id: ...] déjà posés à la main sur une ligne "Timeline N", pour que les
-  // identifiants générés automatiquement (timelines sans [id:]) ne puissent jamais les percuter.
-  const usedTlIds=new Set();
-  txt.split(/\r?\n/).forEach(raw=>{
-    const s=raw.trim();
-    if(/^Timeline\s*\d|^Timeline\s+principale/i.test(s)){
-      const m=s.match(/\[\s*id\s*:\s*([^\]]+?)\s*\]/i);
-      if(m)usedTlIds.add(m[1].trim());
-    }
-  });
+  const out=[],ids={};let br='',cur=null;
   for(const raw of txt.split(/\r?\n/)){
     const s=raw.trim();
-    if(!s){blank++;continue}
+    if(!s)continue;
+    if(s.startsWith('#')){continue}
     const cont=/^(\+|\(|\[c\]|→)/.test(s);
-    if(blank>=4&&!br&&!cont)out.push({k:'sec',t:'Suite du fichier'});
-    blank=0;
     if(cont&&cur){grab(cur,s);continue}
     let m;
-    if(/^\[-+\]$/.test(s)){br='';sub='';tlid='';cur=null;continue}
-    if(m=s.match(/^\[-+\s*(.+?)\s*-+\]$/)){br=m[1].replace(/^Timeline (des|de|du)\s+/i,'');sub='';tlid='';cur=null;out.push({k:'br',t:br});continue}
-    if(/^Timeline\s*\d|^Timeline\s+principale/i.test(s)){
-      let rest=s,v;
-      ({rest,val:v}=tag(rest,'id'));
-      let tid;
-      if(v&&v!==true)tid=v;
-      else{do{tid='tl'+(++tlCount)}while(usedTlIds.has(tid))}
-      usedTlIds.add(tid);
-      let born;({rest,val:born}=tag(rest,'née-de'));
-      let from;({rest,val:from}=tag(rest,'depuis'));
-      let to;({rest,val:to}=tag(rest,'vers'));
-      let amont;({rest,val:amont}=tag(rest,'amont'));
-      let aval;({rest,val:aval}=tag(rest,'aval'));
-      sub=rest.trim();tlid=tid;
-      const bF=(born&&born!==true)?born:((from&&from!==true)?from:null);
-      const lT=(to&&to!==true)?to:null;
-      out.push({k:'tl',id:tid,label:sub,br,bornFrom:bF,linkTo:lT,amont:!!amont,aval:!!aval});
-      continue;
-    }
+    if(/^\[-+\]$/.test(s)){br='';cur=null;continue}
+    if(m=s.match(/^\[-+\s*(.+?)\s*-+\]$/)){br=m[1];cur=null;out.push({k:'br',t:br});continue}
     if(!(m=s.match(/^([^:]{1,70}?)\s*:\s*(.*)$/))){out.push({k:'sec',t:s});cur=null;continue}
-    const d=m[1].trim(),y4=d.match(/-?\d{3,4}/),e={k:'e',ts:[],br,sub,tlid,dur:0};
+    const d=m[1].trim(),y4=d.match(/-?\d{3,4}/),e={k:'e',ts:[],br,dur:0};
     let body=m[2],r;
+    r=tag(body,'sortie');body=r.rest;if(r.val&&r.val!==true)e.release=parseInt(r.val,10);
     r=tag(body,'img');body=r.rest;if(r.val&&r.val!==true)e.img=r.val;
     r=tag(body,'info');body=r.rest;if(r.val&&r.val!==true)e.info=r.val;
-    r=tag(body,'id');body=r.rest;if(r.val&&r.val!==true)e.sceneId=r.val;
-    r=tag(body,'depuis');body=r.rest;if(r.val&&r.val!==true)e.linkFrom=r.val;
-    r=tag(body,'vers');body=r.rest;if(r.val&&r.val!==true)e.linkTo=r.val;
     e.t=clean(grab(e,body));
     split(e);
     const big=y4?y4[0]:/\?\?\?/.test(d)?'???':'';
@@ -190,156 +126,75 @@ function parse(txt){
   }
   return out;
 }
-// PARSE END
+// ============ RENDU ============
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const LS='mcu-scenes-v1';
 const fmt=m=>{m=Math.round(m);return m>=60?`${Math.floor(m/60)} h ${String(m%60).padStart(2,'0')}`:`${m} min`};
 const tsf=ts=>ts.length>1?ts.map(([a,b,c])=>`${c}(${a} → ${b})`).join(' + '):ts.map(([a,b,c])=>c+a+' → '+b).join('');
 const yl=y=>y[0]==='-'?'– '+y.slice(1):y;
-const F={br:'all',q:'',period:'all'},okImg={},byId={},sceneRefs={};
-const slug=w=>w.replace(/^(suite|fin)\s+(de |du |d')?/i,'').replace(/[ée]pisode\s*\d+/ig,'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-let items=[],ents=[],col={},cm='mix';try{cm=localStorage.getItem(LS+'-cm')||'mix'}catch(e){}
+const slug=w=>w.replace(/^(suite|fin)\s+(de |du |d')?/i,'').replace(/[ée]pisode\s*\d+/ig,'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+const F={arc:'all',q:'',order:'story'};
+let items=[],ents=[],col={},okImg={},byId={},arcs=[];
 
-function chips(){
-  const B=$('brs');B.innerHTML='';
-  const names=[...new Set(ents.map(e=>e.br).filter(Boolean))];
-  const add=(v,l,c)=>{const b=document.createElement('button');b.className='chip';b.setAttribute('aria-pressed',F.br===v);
-    b.innerHTML=(c?`<span class="d" style="--pc:${c}"></span>`:'')+esc(l);b.onclick=()=>{F.br=v;chips();render()};B.appendChild(b)};
-  add('all','Tout');add('main','Histoire principale','var(--p0)');
-  names.forEach(n=>add(n,n,col[n]));
+function fillArcSelect(){
+  $('arc').innerHTML='<option value="all">Tous les arcs</option>'+arcs.map(a=>`<option value="${a.idx}">${esc(a.label)}</option>`).join('');
 }
-function rowHtml(e,first,laned){
-  const bc=e.br?col[e.br]:'var(--p0)',ac=`var(--a${e.arc})`,dot=cm==='tl'?bc:ac,card=cm==='arc'?ac:bc;
+function matches(e){
+  const q=F.q.toLowerCase();
+  if(F.arc!=='all'&&e.secIdx!==F.arc)return false;
+  if(q&&!(e.t+' '+e.br+' '+e.y+' '+(e.release||'')).toLowerCase().includes(q))return false;
+  return true;
+}
+function rowHtml(e,leftLabel){
+  const bc=e.br?col[e.br]:(F.order==='story'?`var(--a${(e.secIdx||0)%8})`:'var(--p0)');
   const pic=e.img||(okImg[e.slug]?`images/${e.slug}.jpg`:'');
-  const meta=[e.d?`(${e.d})`:'',!e.br&&e.sub?e.sub:'',e.dur?fmt(e.dur):''].filter(Boolean).join(' · ');
-  const lkTarget=e.linkFrom||e.linkTo,lkId=lkTarget?sceneRefs[lkTarget]:null;
-  const lk=lkId?`<button class="lk" type="button" data-jump="${esc(lkId)}">${e.linkFrom?'↳ depuis l’autre scène':'↳ voir la scène liée'}</button>`:'';
-  // Dans un bloc à plusieurs rails, le point du rail (à gauche, dans la marge) suffit déjà à situer
-  // la scène : on masque le point habituel de la ligne pour ne pas en avoir deux qui se dupliquent.
-  return `<li class="row${laned?' laned':''}" data-rid="${e.id}" style="--pc:${card};--dc:${dot}"><div class="yr">${first?esc(yl(e.y)):''}</div><div class="rail"><i></i></div>
+  const badge=e.br&&F.order==='release'?`<span class="badge" style="--pc:${bc}">${esc(e.br)}</span>`:'';
+  const metaParts=F.order==='story'
+    ?[e.d?`(${e.d})`:'',e.dur?fmt(e.dur):'',e.release?`Sorti en ${e.release}`:'']
+    :[e.y+(e.d?` (${e.d})`:''),e.dur?fmt(e.dur):''];
+  const meta=metaParts.filter(Boolean).join(' · ');
+  return `<li class="row" data-rid="${e.id}" style="--pc:${bc};--dc:${bc}"><div class="yr">${leftLabel!==null?esc(leftLabel):''}</div><div class="rail"><i></i></div>
 <div class="card">${pic?`<img class="poster" data-pid="${e.id}" src="${esc(pic)}" alt="" loading="lazy">`:''}
-<div class="body"><span class="t">${esc(e.s||e.w)}</span>${e.s?`<span class="w">${esc(e.w)}</span>`:''}
-${e.ts.length?`<span class="ts">${tsf(e.ts)}</span>`:''}${meta||lk?`<span class="m">${esc(meta)}${lk}</span>`:''}${e.info&&!pic?`<button class="more" type="button" data-pid="${e.id}">ⓘ détails</button>`:''}</div></div></li>`;
+<div class="body">${badge}<span class="t">${esc(e.s||e.w)}</span>${e.s?`<span class="w">${esc(e.w)}</span>`:''}
+${e.ts.length?`<span class="ts">${tsf(e.ts)}</span>`:''}${meta?`<span class="m">${esc(meta)}</span>`:''}${e.info&&!pic?`<button class="more" type="button" data-pid="${e.id}">ⓘ détails</button>`:''}</div></div></li>`;
 }
-// Contenu d'un bloc saga (entre [---- ... ----]) : rendu simple à une couleur si aucune ligne
-// "Timeline N" n'y définit de branchement, ou rail à plusieurs lignes sinon.
-let pendingLanes=[];
-function sagaHtml(br,rows,tls){
-  const used=new Set(rows.map(e=>e.tlid).filter(Boolean));
-  const realTls=tls.filter(t=>used.has(t.id));
-  if(!realTls.length){
-    let prev=null;
-    const body=rows.map(e=>{const first=e.y!==prev;prev=e.y;return rowHtml(e,first)}).join('');
-    return `<li class="brblock" style="--pc:${col[br]}"><span class="bh"><i></i>${esc(br)}</span><ol>${body}</ol></li>`;
-  }
-  const lanes={};realTls.forEach((t,i)=>lanes[t.id]=i%6);
-  const gutter=Math.min(realTls.length,6)*22+14;
-  let prev=null,rowsHtml='';
-  rows.forEach(e=>{const first=e.y!==prev;prev=e.y;rowsHtml+=rowHtml(e,first,true)});
-  const sagaId='saga-'+Math.random().toString(36).slice(2,9);
-  pendingLanes.push({id:sagaId,tls:realTls,lanes,rowTlid:Object.fromEntries(rows.map(e=>[e.id,e.tlid]))});
-  return `<li class="saga" style="--pc:${col[br]}"><span class="bh"><i></i>${esc(br)}</span>
-<div class="saga-body" id="${sagaId}" style="--gutter:${gutter}px"><svg class="saga-svg"></svg><div class="lane-labels"></div><ol>${rowsHtml}</ol></div></li>`;
+function sagaHtml(br,rows){
+  let prev=null;
+  const body=rows.map(e=>{const first=e.y!==prev;prev=e.y;return rowHtml(e,first?e.y:null)}).join('');
+  return `<li class="brblock" style="--pc:${col[br]}"><span class="bh"><i></i>${esc(br)}</span><ol>${body}</ol></li>`;
 }
-function render(){
-  const q=F.q.toLowerCase(),act=F.br!=='all'||q||F.period!=='all',group=!act;
-  $('cnt').textContent=`${ents.length} scènes · ${fmt(ents.reduce((n,e)=>n+e.dur,0))} de visionnage`;
-  pendingLanes=[];
-  let prev=null,html='',buf=null; // buf = bloc saga en cours de regroupement {br, rows:[], tls:[]}
-  const flush=()=>{if(buf){html+=sagaHtml(buf.br,buf.rows,buf.tls);buf=null}};
-  items.forEach((e,i)=>{
-    if(e.k==='sec'){flush();if(!act){prev=null;html+=`<li class="sec" id="s${i}" style="--dc:var(--a${e.arc})"><h2>${esc(e.t)}</h2></li>`}return}
-    if(e.k==='br'){flush();return} // le nom de la saga est repris dans l'étiquette du bloc
-    if(e.k==='tl'){
-      if(group&&e.br){if(!buf||buf.br!==e.br)flush();if(!buf)buf={br:e.br,rows:[],tls:[]};buf.tls.push(e)}
-      return;
-    }
-    if(F.br!=='all'&&e.br!==(F.br==='main'?'':F.br))return;
-    if(F.period!=='all'&&String(e.sIdx)!==F.period)return;
-    if(q&&!(e.t+' '+e.y+' '+e.d+' '+e.br+' '+e.sub).toLowerCase().includes(q))return;
-    if(group&&e.br){
-      if(!buf||buf.br!==e.br)flush();
-      if(!buf)buf={br:e.br,rows:[],tls:[]};
-      buf.rows.push(e);
-    }else{
-      flush();
-      const first=e.y!==prev||e.y==='???';prev=e.y;
-      html+=rowHtml(e,first);
-    }
+function renderStory(){
+  let prev=null,html='',buf=null;
+  const flush=()=>{if(buf){html+=sagaHtml(buf.br,buf.rows);buf=null}};
+  items.forEach(e=>{
+    if(e.k==='sec'){flush();prev=null;html+=`<li class="sec" style="--dc:var(--a${(e.secIdx||0)%8})"><h2>${esc(e.t)}</h2></li>`;return}
+    if(e.k==='br'){flush();return}
+    if(!matches(e))return;
+    if(e.br){if(!buf||buf.br!==e.br)flush();if(!buf)buf={br:e.br,rows:[]};buf.rows.push(e)}
+    else{flush();const first=e.y!==prev;prev=e.y;html+=rowHtml(e,first?e.y:null)}
   });
   flush();
-  $('tl').innerHTML=html||'<li class="msg">Aucune scène ne correspond à ces filtres.</li>';
-  requestAnimationFrame(layoutLanes);
+  return html;
 }
-// Dessine, pour chaque bloc saga à plusieurs lignes, un rail vertical par timeline et les courbes de
-// séparation/fusion INTERNES à ce bloc, mesurés sur le DOM réel (les cartes n'ont pas toutes la même
-// hauteur). Trois niveaux de couleur distincts, jamais mélangés par une courbe qui sortirait de son niveau :
-//  - la timeline principale (--p0) ;
-//  - chaque saga (--p1…--p5, ex. X-Men, 4 Fantastiques, Spider-Man) ;
-//  - chaque timeline au sein d'une saga (--l0…--l5, ex. les différentes timelines X-Men).
-// Le lien ponctuel entre deux scènes distantes (ex. Deadpool ↔ timeline principale) reste un simple
-// bouton texte « ↳ voir la scène liée » qui fait défiler jusqu'à la scène (voir jumpTo) — plus de courbe
-// traversant la page.
-function laneColor(i){return `var(--l${i%6})`}
-function layoutLanes(){
-  pendingLanes.forEach(({id,tls,lanes,rowTlid})=>{
-    const box=document.getElementById(id);if(!box)return;
-    const svg=box.querySelector('.saga-svg');
-    const boxTop=box.getBoundingClientRect().top;
-    // Le point du rail de ces rangées est masqué (voir .row.laned, pour ne pas doubler le point du rail
-    // de la lane) : on mesure donc sur la carte elle-même, toujours visible.
-    const dotY=rid=>{const row=box.querySelector(`.row[data-rid="${CSS.escape(rid)}"]`);if(!row)return null;const card=row.querySelector('.card');if(!card)return null;const r=card.getBoundingClientRect();return r.top-boxTop+r.height/2};
-    const laneX=li=>14+lanes[li]*22+11;
-    const gutterPx=Math.min(tls.length,6)*22+14; // même formule que sagaHtml, pour ancrer les labels par rapport au bord droit du conteneur
-    // Nom affiché le long du rail : on retire le "Timeline N"/"Timeline principale" du début de la ligne
-    // pour ne garder que la description entre parenthèses (ex. "Cable retourne dans le passé") ; si la
-    // ligne n'a pas de description, on retombe sur l'identifiant.
-    const laneName=t=>{
-      let s=(t.label||'').replace(/^Timeline\s*(\d+|principale)\s*/i,'').trim().replace(/^\((.*)\)$/,'$1');
-      return s||t.id;
-    };
-    let paths='',defs='',labels='';
-    tls.forEach(t=>{
-      const rowIds=Object.keys(rowTlid).filter(rid=>rowTlid[rid]===t.id);
-      if(!rowIds.length)return;
-      const ys=rowIds.map(dotY).filter(y=>y!==null);
-      if(!ys.length)return;
-      const x=laneX(t.id),top=Math.min(...ys),bot=Math.max(...ys),c=laneColor(lanes[t.id]);
-      const gid=id+'-'+t.id; // préfixe unique pour les dégradés de ce saga (évite les collisions entre blocs)
-      paths+=`<line x1="${x}" y1="${top}" x2="${x}" y2="${bot}" stroke="${c}" stroke-width="2.5"/>`;
-      // Label posé au début de la lane (au niveau de son premier point), horizontal. Ancré par "right"
-      // (pas par une largeur fixe) : son bord droit reste toujours à 8px à gauche du point de départ,
-      // quelle que soit la longueur du texte, qui s'étend simplement vers la gauche au besoin.
-      labels+=`<span class="lane-label" style="right:${gutterPx-(x-8)}px;top:${top-7}px;color:${c}">${esc(laneName(t))}</span>`;
-      // Origine : courbe depuis la timeline mère (née-de) si on la retrouve dans ce bloc, sinon un trait qui s'estompe (amont) ou rien.
-      const originRid=t.bornFrom?sceneRefs[t.bornFrom]:null;
-      const originY=originRid?dotY(originRid):null;
-      const originLane=originRid&&rowTlid[originRid]!==undefined?lanes[rowTlid[originRid]]:null;
-      if(originY!==null&&originLane!==null){
-        const ox=14+originLane*22+11;
-        paths+=`<path d="M${ox} ${originY} C ${ox} ${(originY+top)/2}, ${x} ${(originY+top)/2}, ${x} ${top}" fill="none" stroke="${c}" stroke-width="2.5"/>`;
-      }else if(t.amont){
-        // Pas de clamp à 0 : le trait doit pouvoir dépasser au-dessus du bloc (overflow:visible sur le svg).
-        defs+=`<linearGradient id="${gid}-up" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}" stop-opacity="0"/><stop offset="1" stop-color="${c}" stop-opacity="1"/></linearGradient>`;
-        paths+=`<line x1="${x}" y1="${top-40}" x2="${x}" y2="${top}" stroke="url(#${gid}-up)" stroke-width="2.5" stroke-linecap="round"/>`;
-      }
-      // Fin : courbe de fusion (vers) si retrouvée dans ce bloc, sinon un trait qui s'estompe (aval) ou rien.
-      const targetRid=t.linkTo?sceneRefs[t.linkTo]:null;
-      const targetY=targetRid?dotY(targetRid):null;
-      const targetLane=targetRid&&rowTlid[targetRid]!==undefined?lanes[rowTlid[targetRid]]:null;
-      if(targetY!==null&&targetLane!==null){
-        const tx=14+targetLane*22+11;
-        paths+=`<path d="M${x} ${bot} C ${x} ${(bot+targetY)/2}, ${tx} ${(bot+targetY)/2}, ${tx} ${targetY}" fill="none" stroke="${c}" stroke-width="2.5"/>`;
-      }else if(t.aval){
-        defs+=`<linearGradient id="${gid}-down" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}" stop-opacity="1"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></linearGradient>`;
-        paths+=`<line x1="${x}" y1="${bot}" x2="${x}" y2="${bot+40}" stroke="url(#${gid}-down)" stroke-width="2.5" stroke-linecap="round"/>`;
-      }
-      ys.forEach(y=>{paths+=`<circle cx="${x}" cy="${y}" r="4" fill="${c}"/>`});
-    });
-    svg.innerHTML=`<defs>${defs}</defs>${paths}`;
-    const lb=box.querySelector('.lane-labels');if(lb)lb.innerHTML=labels;
+function renderRelease(){
+  const rows=ents.filter(matches).slice().sort((a,b)=>{
+    const ra=a.release??9999,rb=b.release??9999;
+    if(ra!==rb)return ra-rb;
+    return (a.s||a.w).localeCompare(b.s||b.w);
   });
+  let prev=null,html='';
+  rows.forEach(e=>{
+    const label=e.release?String(e.release):'Date de sortie inconnue';
+    const first=label!==prev;prev=label;
+    html+=rowHtml(e,first?label:null);
+  });
+  return html;
+}
+function render(){
+  const f=ents.filter(matches);
+  $('cnt').textContent=`${f.length} scène(s) · ${fmt(f.reduce((n,e)=>n+e.dur,0))} de visionnage`;
+  const html=F.order==='story'?renderStory():renderRelease();
+  $('tl').innerHTML=html||'<li class="msg">Aucune scène ne correspond à ces filtres.</li>';
 }
 function place(t){const P=$('pop'),r=t.getBoundingClientRect(),w=P.offsetWidth,h=P.offsetHeight;
   let x=r.right+12;if(x+w>innerWidth-8)x=r.left-w-12;
@@ -351,40 +206,23 @@ function pop(t){
   P.hidden=false;place(t);
   const im=P.querySelector('img');if(im)im.onload=()=>place(t);
 }
-function jumpTo(rid){
-  const row=document.querySelector(`.row[data-rid="${CSS.escape(rid)}"]`);if(!row)return;
-  row.scrollIntoView({block:'center',behavior:'smooth'});
-  row.classList.add('flash');setTimeout(()=>row.classList.remove('flash'),1600);
-}
 $('tl').addEventListener('mouseover',e=>{const t=e.target.closest('[data-pid]');if(t)pop(t)});
 $('tl').addEventListener('mouseout',e=>{if(e.target.closest('[data-pid]'))$('pop').hidden=true});
-$('tl').addEventListener('click',e=>{const j=e.target.closest('[data-jump]');if(j){jumpTo(j.dataset.jump);e.stopPropagation()}});
 document.addEventListener('click',e=>{const t=e.target.closest('[data-pid]');if(t)pop(t);else if(!e.target.closest('#pop'))$('pop').hidden=true});
 addEventListener('scroll',()=>{$('pop').hidden=true},{passive:true});
-addEventListener('resize',()=>{clearTimeout(window.__rz);window.__rz=setTimeout(layoutLanes,150)});
-// Sur desktop, le bouton "Filtres" est masqué en CSS (.filters-body est toujours visible, en
-// display:contents) : ce clic ne sert donc qu'à replier/déplier le tiroir sur mobile.
-$('filtersToggle').onclick=()=>{
-  const open=$('filtersBody').classList.toggle('open');
-  $('filtersToggle').setAttribute('aria-expanded',open);
-};
-$('cm').value=cm;$('cm').onchange=e=>{cm=e.target.value;try{localStorage.setItem(LS+'-cm',cm)}catch(x){}render()};
+$('order').onchange=e=>{F.order=e.target.value;render()};
+$('arc').onchange=e=>{F.arc=e.target.value==='all'?'all':parseInt(e.target.value,10);render()};
 $('q').oninput=e=>{F.q=e.target.value;render()};
-$('period').onchange=e=>{F.period=e.target.value;render()};
 fetch('timeline.txt').then(r=>{if(!r.ok)throw 0;return r.text()}).then(async txt=>{
   items=parse(txt);ents=items.filter(e=>e.k==='e');
   ents.forEach(e=>byId[e.id]=e);
-  ents.forEach(e=>{if(e.sceneId)sceneRefs[e.sceneId]=e.id});
-  let n=-1;const secs=[];
-  items.forEach(e=>{if(e.k==='sec'){n++;secs.push(e.t)}e.arc=Math.max(n,0)%8;e.sIdx=Math.max(n,0)});
+  let n=-1;items.forEach(e=>{if(e.k==='sec')n++;e.secIdx=Math.max(n,0)});
+  arcs=items.filter(e=>e.k==='sec').map(e=>({idx:e.secIdx,label:e.t}));
   [...new Set(ents.map(e=>e.br).filter(Boolean))].forEach((n,i)=>col[n]=`var(--p${i%5+1})`);
-  items.forEach(e=>{if(e.k==='br'&&!col[e.t])col[e.t]='var(--p1)'});
-  $('period').innerHTML='<option value="all">Aller à une période…</option>'+secs.map((t,i)=>`<option value="${i}">${esc(t)}</option>`).join('');
   ents.forEach(e=>e.slug=slug(e.w));
   const u=[...new Set(ents.map(e=>e.slug).filter(Boolean))];
   await Promise.all(u.map(s=>new Promise(r=>{const i=new Image();i.onload=()=>{okImg[s]=1;r()};i.onerror=r;i.src=`images/${s}.jpg`})));
-  chips();render();
-  if(location.hash==='#images')$('tl').insertAdjacentHTML('afterbegin',`<li class="msg">${u.map(s=>(okImg[s]?'✓ ':'✗ ')+s+'.jpg').join('<br>')}</li>`);
+  fillArcSelect();render();
 }).catch(()=>{$('tl').innerHTML='<li class="msg">Impossible de charger timeline.txt. Place-le à côté de index.html et ouvre le site via GitHub Pages ou un serveur local (python -m http.server), pas en double-cliquant sur le fichier.</li>'});
 </script>
 </body>
