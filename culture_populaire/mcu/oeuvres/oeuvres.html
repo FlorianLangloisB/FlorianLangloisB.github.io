@@ -21,21 +21,8 @@ header p{color:var(--mut);max-width:52rem;margin:1.1rem 0 1.6rem;font-size:1.05r
 #cnt{font-weight:600}
 .tools{position:sticky;top:0;z-index:5;background:rgba(21,23,46,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .tools>div{max-width:900px;margin:0 auto;padding:.6rem 1.25rem;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
-.filters-toggle{display:none;cursor:pointer;font:inherit;font-size:.9rem;font-weight:600;color:var(--tx);background:transparent;list-style:none;border:1px solid var(--line);border-radius:99px;padding:.3rem .9rem;align-items:center;gap:.4rem;user-select:none}
-.filters-toggle::before{content:"▸";font-size:.75em;transition:transform .15s}
-.filters-toggle[aria-expanded=true]::before{transform:rotate(90deg)}
-.filters-body{display:contents}
-@media (max-width:640px){
-  .filters-toggle{display:inline-flex}
-  .filters-body{display:flex;flex-direction:column;align-items:stretch;gap:.5rem;width:100%;margin-top:.5rem}
-  .filters-body:not(.open){display:none}
-}
 input[type=search],select{font:inherit;color:var(--tx);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:.45rem .7rem;min-width:0;max-width:100%}
 input[type=search]{flex:1 1 11rem}
-#brs{display:flex;flex-wrap:wrap;gap:.4rem;width:100%}
-.chip{font:inherit;font-size:.9rem;color:var(--tx);background:transparent;border:1px solid var(--line);border-radius:99px;padding:.25rem .8rem;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem}
-.chip[aria-pressed=true]{background:var(--tx);color:var(--bg);border-color:var(--tx)}
-.chip .d{width:.6rem;height:.6rem;border-radius:50%;background:var(--pc)}
 main{max-width:900px;margin:0 auto;padding:1rem 1.25rem 5rem;position:relative}
 ol{list-style:none;margin:0;padding:0}
 .sec h2{margin:3.2rem 0 1rem;font-size:clamp(1.6rem,5vw,2.6rem);font-weight:800;letter-spacing:-.025em;line-height:1.05;padding-bottom:.5rem;border-bottom:3px solid var(--dc)}
@@ -45,7 +32,6 @@ ol{list-style:none;margin:0;padding:0}
 .rail{position:relative}
 .rail::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--line);transform:translateX(-50%)}
 .rail i{position:absolute;left:50%;top:1.2rem;width:.9rem;height:.9rem;border-radius:50%;border:2px solid var(--dc);background:var(--dc);box-shadow:0 0 0 3px var(--bg);transform:translate(-50%,-50%)}
-.row.laned .rail i{display:none}
 .card{position:relative;display:flex;gap:.8rem;align-items:flex-start;padding:.65rem 1rem;margin-bottom:.45rem;background:var(--panel);border-radius:10px;border-left:4px solid var(--pc)}
 .card:hover{background:#262a55}
 .body{display:flex;flex-direction:column;gap:.15rem;min-width:0}
@@ -64,15 +50,6 @@ ol{list-style:none;margin:0;padding:0}
 .brblock .bh{display:inline-flex;align-items:center;gap:.45rem;font-weight:700;font-size:.82rem;color:var(--pc);letter-spacing:.02em;margin:.4rem 0 .6rem;padding:.2rem .7rem;border:1px solid var(--pc);border-radius:99px}
 .brblock .bh i{width:.5rem;height:.5rem;border-radius:50%;background:var(--pc);flex:none}
 .brblock .row .card{border-left-width:3px}
-.saga{margin:.3rem 0 1.1rem}
-.saga>.bh{display:inline-flex;align-items:center;gap:.45rem;font-weight:700;font-size:.82rem;color:var(--pc);letter-spacing:.02em;margin:.4rem 0 .6rem;padding:.2rem .7rem;border:1px solid var(--pc);border-radius:99px}
-.saga>.bh i{width:.5rem;height:.5rem;border-radius:50%;background:var(--pc);flex:none}
-.saga-body{position:relative}
-.saga-body>ol{margin-left:var(--gutter,0px)}
-.saga-svg{position:absolute;left:0;top:0;width:var(--gutter,0px);height:100%;overflow:visible;pointer-events:none}
-.saga-body .row .card{border-left-width:3px}
-.lane-labels{position:absolute;left:0;top:0;width:var(--gutter,0px);height:100%;pointer-events:none;overflow:visible}
-.lane-label{position:absolute;font-size:.68rem;font-weight:700;letter-spacing:.01em;white-space:nowrap;line-height:1;opacity:.9}
 .badge{display:inline-block;font-size:.72rem;font-weight:700;color:var(--pc);border:1px solid var(--pc);border-radius:99px;padding:.05rem .55rem;margin-inline-end:.4rem}
 .msg{color:var(--mut);padding:2rem 0}
 @media (max-width:520px){.row{gap:0 .6rem}.poster{width:76px}}
@@ -91,11 +68,8 @@ ol{list-style:none;margin:0;padding:0}
     <option value="story">Ordre chronologique (histoire)</option>
     <option value="release">Ordre de sortie</option>
   </select>
-  <input type="search" id="q" placeholder="Rechercher un film, une série, une saga" aria-label="Rechercher">
-  <button type="button" class="filters-toggle" id="filtersToggle" aria-expanded="false" aria-controls="filtersBody">Filtres</button>
-  <div class="filters-body" id="filtersBody">
-    <div id="brs"></div>
-  </div>
+  <select id="arc" aria-label="Filtrer par arc"><option value="all">Tous les arcs</option></select>
+  <input type="search" id="q" placeholder="Rechercher un film, une série" aria-label="Rechercher">
 </div></div>
 <div id="pop" hidden></div>
 <main><ol id="tl"><li class="msg">Chargement…</li></ol></main>
@@ -136,20 +110,15 @@ function parse(txt){
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const slug=w=>w.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-const F={br:'all',q:'',order:'story'};
-let items=[],ents=[],col={},okImg={},byId={},sceneRefs={};
+const F={arc:'all',q:'',order:'story'};
+let items=[],ents=[],col={},okImg={},byId={},arcs=[];
 
-function chips(){
-  const B=$('brs');B.innerHTML='';
-  const names=[...new Set(ents.map(e=>e.br).filter(Boolean))];
-  const add=(v,l,c)=>{const b=document.createElement('button');b.className='chip';b.setAttribute('aria-pressed',F.br===v);
-    b.innerHTML=(c?`<span class="d" style="--pc:${c}"></span>`:'')+esc(l);b.onclick=()=>{F.br=v;chips();render()};B.appendChild(b)};
-  add('all','Tout');
-  names.forEach(n=>add(n,n,col[n]));
+function fillArcSelect(){
+  $('arc').innerHTML='<option value="all">Tous les arcs</option>'+arcs.map(a=>`<option value="${a.idx}">${esc(a.label)}</option>`).join('');
 }
 function matches(e){
   const q=F.q.toLowerCase();
-  if(F.br!=='all'&&e.br!==F.br)return false;
+  if(F.arc!=='all'&&e.secIdx!==F.arc)return false;
   if(q&&!(e.t+' '+e.br+' '+e.y+' '+(e.release||'')).toLowerCase().includes(q))return false;
   return true;
 }
@@ -216,20 +185,19 @@ $('tl').addEventListener('mouseover',e=>{const t=e.target.closest('[data-pid]');
 $('tl').addEventListener('mouseout',e=>{if(e.target.closest('[data-pid]'))$('pop').hidden=true});
 document.addEventListener('click',e=>{const t=e.target.closest('[data-pid]');if(t)pop(t);else if(!e.target.closest('#pop'))$('pop').hidden=true});
 addEventListener('scroll',()=>{$('pop').hidden=true},{passive:true});
-addEventListener('resize',()=>{clearTimeout(window.__rz);window.__rz=setTimeout(layoutLanes,150)});
-$('filtersToggle').onclick=()=>{const open=$('filtersBody').classList.toggle('open');$('filtersToggle').setAttribute('aria-expanded',open)};
 $('order').onchange=e=>{F.order=e.target.value;render()};
 $('q').oninput=e=>{F.q=e.target.value;render()};
+$('arc').onchange=e=>{F.arc=e.target.value==='all'?'all':parseInt(e.target.value,10);render()};
 fetch('oeuvres.txt').then(r=>{if(!r.ok)throw 0;return r.text()}).then(async txt=>{
   items=parse(txt);ents=items.filter(e=>e.k==='e');
   ents.forEach(e=>byId[e.id]=e);
-  ents.forEach(e=>{if(e.sceneId)sceneRefs[e.sceneId]=e.id});
   let n=-1;items.forEach(e=>{if(e.k==='sec')n++;e.secIdx=Math.max(n,0)});
+  arcs=items.filter(e=>e.k==='sec').map(e=>({idx:e.secIdx,label:e.t}));
   [...new Set(ents.map(e=>e.br).filter(Boolean))].forEach((n,i)=>col[n]=`var(--p${i%5+1})`);
   ents.forEach(e=>e.slug=slug(e.t));
   const u=[...new Set(ents.map(e=>e.slug).filter(Boolean))];
   await Promise.all(u.map(s=>new Promise(r=>{const i=new Image();i.onload=()=>{okImg[s]=1;r()};i.onerror=r;i.src=`images/${s}.jpg`})));
-  chips();render();
+  fillArcSelect();render();
 }).catch(()=>{$('tl').innerHTML='<li class="msg">Impossible de charger oeuvres.txt. Place-le à côté de oeuvres.html et ouvre le site via GitHub Pages ou un serveur local (python -m http.server), pas en double-cliquant sur le fichier.</li>'});
 </script>
 </body>
