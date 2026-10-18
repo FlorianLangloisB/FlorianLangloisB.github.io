@@ -43,8 +43,8 @@ Première moitié du 20ème siècle
 
 Deuxième moitié du 20ème siècle					
 
-24 novembre 1971 : Loki est DB Cooper - Loki S1E01 (26:37→28:13) [img:https://i.imgur.com/zuO5Dxz.png] [info: C'est un évènement historique.]
-Années 70 : Le père de Wilson Fisk se présente à des élections - Dardevil S1E08 (11:21→14:34)+(26:11→) [img:https://i.imgur.com/06H9ECr.png] [info:Pas d'information précise, cependant le décor fait années 70, l'acteur qui incarne Wilson Fisk a 55 ans en 2014 et il semble avoir ici une dizaine d'années.]
+24 novembre 1971 : Loki est D.B. Cooper - Loki S1E01 (26:37→28:13) [img:https://i.imgur.com/zuO5Dxz.png] [info: C'est un évènement historique.]
+Années 70 : Enfance de Wilson Fisk - Dardevil S1E08 (11:21→14:34)+(26:11→29:30)+(35:13→36:29)+(38:32→41:02) [img:https://i.imgur.com/06H9ECr.png] [info:Pas d'information précise, cependant le décor fait années 70, l'acteur qui incarne Wilson Fisk a 55 ans en 2014 et il semble avoir ici une dizaine d'années.]
 1974 : Publicité pour la Stark Expo [img:https://i.imgur.com/uYv1Jt8.png] [info:C'est indiqué 1974 dans la publicité.]
 1980: Le passé des parents de Peter Quill - Guardians of the Galaxy Vol.2 (0:36→2:49) [img:https://i.imgur.com/TldhYwm.png] [info:La date est directement montrée au moment de la scène.]
 Années 80 : Agatha Harkness vole des pouvoirs -  Agatha All Along épisode 9 (22:00→22:10)
@@ -96,6 +96,7 @@ Commencement
 2008: Tony Stark rencontre Nick Fury – Scène post-crédit Iron Man 1 (2:05:19→2:05:53)
 ??? : Jeunesse de Rocket – GotG 3 
  	(18:05→18:44)+(26:56→30:44)+(49:50→52:15)+(59:43→1:02:58)+(1:13:55→1:19:51)
+2010 (septembre) : Matt Murdock et Foggy se rencontrent - - Dardevil S1E10 (02:55→
 2010 ou 2011 : Yvan Vanko construit ses fouets – Iron Man 2 (02:43→04:58)
 2011 : Hulk jusqu’à ce que Bruce retourne aux USA (03:02→31:58)
 2011 : Iron Man 2 jusqu’à ce que Tony et Rhodey discutent de Monaco (05:16→49:42)
@@ -168,7 +169,9 @@ Avengers 2
 2014 : Daredevil S1E05 (00:08→08:22)+(09:23→54:12)
 2014 : Daredevil S1E06 (00:08→02:09)+(03:12→46:41)
 2014 : Daredevil S1E07 (00:08→02:20)+(03:23→10:34)+(17:18→24:41)+(27:02→38:56)+(41:23→48:41)
-2014 : Daredevil S1E08 (00:08→03:05)+(04:08→11:21)+(14:35→26:11)
+2014 : Daredevil S1E08 (00:08→03:05)+(04:08→11:21)+(14:35→26:11)+(29:30→35:13)+(36:30→38:29)+(41:03→51:03)
+2014 : Daredevil S1E09 (02:39→33:02)+(34:08→38:42)+(46:33→48:24)+(38:43→46:32)+(00:08→01:36)+(33:03→34:07)(48:25→55:51)
+2014 : Daredevil S1E10 (00:08→01:53)+(02:55→
 2014: Captain America 2 (00:35→1:32:29)+(1:33:19→2:06:22)+(2:08:17→2:09:45)+(2:15:02→2:15:35)
 ???: Conception d’Adam Warlock - Scène post-générique n°3 de GotG2 (2:11:15→2:12:02)
 2014: Shang-Chi quitte sa maison (il a 14 ans) – Shang-Chi (24:42→25:56)+(33:56→35:04)+(1:26:21→1:27:00)
@@ -417,6 +420,7 @@ Hors du temps: Loki 2 épisode 6 – La TVA constate Ant-Man 3 (42:30→50:55)
 2025 (été) : She-Hulk épisode 7 (1:24→28:01)
 2025 (été) : She-Hulk épisode 8 (1:25→5:41)+(5:48→29:22)
 2025 (été) : She-Hulk épisode 9 (0:33→27:11)+(29:02→29:28)
+2025 (Septembre) : Première année de MJ et Ned au MIT - Spider-Man : Brand New Day (01:17→04:08)
 2025 (Automne) : Ms. Marvel épisode 1 (0:33→03:47)+(03:52→42:00)+(43:53→44:20)
 2025 (Automne) : Ms. Marvel épisode 2 (01:39→04:56)+(05:00→44:23)
 2025 (Automne) : Ms. Marvel épisode 3 (4:09→07:58)+(08:03→40:40)
@@ -436,6 +440,7 @@ Hors du temps: Loki 2 épisode 6 – La TVA constate Ant-Man 3 (42:30→50:55)
 2025 : The Marvels 
  	(00:36→02:31)+(04:24→07:02)+(02:31→04:00)+(07:02→09:56)+(04:01→04:17)
  	+(09:56→01:33:05)
+2025 (Hiver) : Peter Parker installe son bureau - Spider-Man : Brand New Day (04:09→04:28)
 2025 (Noël) : GotG spécial Noël (02:18→36:13)+(37:01→38:19)
 2026 : GotG 3 
  	(01:43→18:04)+(18:44→26:56)+(30:44→49:50)+(52:15→59:43)+(1:02:58→1:13:55)
@@ -444,6 +449,7 @@ Hors du temps: Loki 2 épisode 6 – La TVA constate Ant-Man 3 (42:30→50:55)
 
 Nouvelles équipes
 
+2026 (Septembre) : Deuxième année de MJ et Ned au MIT - Spider-Man : Brand New Day (04:28→04:44)
 2026 (Automne) : William Kaplan passe la journée avec son copain  - Agatha All Along épisode 6 (15:46→20:02)
 2026 (Automne) : Agatha All Along épisode 1 jusqu’à ce qu’elle retourne au poste (0:15→04:50)+(05:24→12:24)
 2026 (Automne) : William Kaplan rencontre Raplh dans le parking - Agatha All Along épisode 6 (20:02→25:47)
@@ -467,8 +473,10 @@ Nouvelles équipes
 2026 (Automne) : Agatha All Along épisode 8 (03:48→41:58)
 2026 (Automne) : Agatha All Along épisode 9 (23:23→34:03)
 2026 (Novembre) : Thaddeus Ross vient de se faire élire – Captain America 4 (00:12→03:19)
+2026 (Hiver) : Spider-Man affronte le scorpion - Spider-Man : Brand New Day (04:44→04:55)+(05:04→05:09)+(05:25→)
 2027 (16 Avril 2027 et jours autour) : Captain America 4 
 	(03:27→01:43:55)+(01:57:18→01:58:15)+(01:43:55→01:47:56)
+2027 : Spide-Man affronte Tombstone	- Spider-Man : Brand New Day (04:55→05:04)+(05:09→05:25)
 2027 (Novembre) : Thunderbolts* (00:40→01:53:55)+(01:55:51→01:56:29)
 2028 : Spider-Man : Brand New Day
 [---- Timeline des Quatre Fantastiques ----]
